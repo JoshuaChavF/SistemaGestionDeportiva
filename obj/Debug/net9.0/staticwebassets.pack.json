@@ -1,0 +1,305 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\SistemaGestionDeportiva.bundle.scp.css",
+      "PackagePath": "staticwebassets\\SistemaGestionDeportiva.3g3ui95wif.bundle.scp.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\jquery\\dist\\jquery.slim.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.js"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.min.js"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.min.map"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\uploads\\escudos\\786732f2-585f-49cf-83ef-6e8eb1514131.png",
+      "PackagePath": "staticwebassets\\uploads\\escudos\\786732f2-585f-49cf-83ef-6e8eb1514131.png"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\uploads\\escudos\\8cd0a17e-62af-4ad6-a38c-cb5eb28f5b95.png",
+      "PackagePath": "staticwebassets\\uploads\\escudos\\8cd0a17e-62af-4ad6-a38c-cb5eb28f5b95.png"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\uploads\\escudos\\906d6f70-2433-4105-90fa-ce5dac9e851a.png",
+      "PackagePath": "staticwebassets\\uploads\\escudos\\906d6f70-2433-4105-90fa-ce5dac9e851a.png"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\uploads\\escudos\\d9060957-7c76-4a4f-8c0f-6af663dd7fcb.png",
+      "PackagePath": "staticwebassets\\uploads\\escudos\\d9060957-7c76-4a4f-8c0f-6af663dd7fcb.png"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\uploads\\escudos\\f1209e27-622c-440c-9ffe-5fadd048aa6c.png",
+      "PackagePath": "staticwebassets\\uploads\\escudos\\f1209e27-622c-440c-9ffe-5fadd048aa6c.png"
+    },
+    {
+      "Id": "E:\\Disco F\\D\\Joshua trabajos U\\Materias llevadas\\Licenciatura\\Programacion Avanzada en WEB\\Proyecto 1\\SistemaGestionDeportiva\\SistemaGestionDeportiva\\wwwroot\\uploads\\escudos\\f35cdf57-deb6-417a-bbda-9be88f673d3e.png",
+      "PackagePath": "staticwebassets\\uploads\\escudos\\f35cdf57-deb6-417a-bbda-9be88f673d3e.png"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.SistemaGestionDeportiva.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.SistemaGestionDeportiva.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.build.SistemaGestionDeportiva.props",
+      "PackagePath": "build\\SistemaGestionDeportiva.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildMultiTargeting.SistemaGestionDeportiva.props",
+      "PackagePath": "buildMultiTargeting\\SistemaGestionDeportiva.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildTransitive.SistemaGestionDeportiva.props",
+      "PackagePath": "buildTransitive\\SistemaGestionDeportiva.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

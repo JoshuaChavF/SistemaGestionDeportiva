@@ -1,0 +1,131 @@
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\jquery\dist\jquery.slim.min.js
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\jquery\dist\jquery.js
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\js\bootstrap.js
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\jquery-validation\dist\jquery.validate.js
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\jquery-validation\dist\additional-methods.js
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\jquery\dist\jquery.min.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\jquery\LICENSE.txt
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\css\site.css
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\jquery\dist\jquery.slim.js
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\js\site.js
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\jquery\dist\jquery.min.js
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap.css
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\favicon.ico
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\jquery-validation\LICENSE.md
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\jquery\dist\jquery.slim.min.map
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+E:\Disco F\D\Joshua trabajos U\Materias llevadas\Licenciatura\Programacion Avanzada en WEB\Proyecto 1\SistemaGestionDeportiva\SistemaGestionDeportiva\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+wwwroot\css\site.css
+wwwroot\favicon.ico
+wwwroot\js\site.js
+wwwroot\lib\bootstrap\dist\css\bootstrap.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+wwwroot\lib\bootstrap\LICENSE
+wwwroot\lib\jquery\dist\jquery.js
+wwwroot\lib\jquery\dist\jquery.min.js
+wwwroot\lib\jquery\dist\jquery.min.map
+wwwroot\lib\jquery\dist\jquery.slim.js
+wwwroot\lib\jquery\dist\jquery.slim.min.js
+wwwroot\lib\jquery\dist\jquery.slim.min.map
+wwwroot\lib\jquery\LICENSE.txt
+wwwroot\lib\jquery-validation\dist\additional-methods.js
+wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+wwwroot\lib\jquery-validation\dist\jquery.validate.js
+wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+wwwroot\lib\jquery-validation\LICENSE.md
+wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
+wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+wwwroot\uploads\escudos\786732f2-585f-49cf-83ef-6e8eb1514131.png
+wwwroot\uploads\escudos\8cd0a17e-62af-4ad6-a38c-cb5eb28f5b95.png
+wwwroot\uploads\escudos\906d6f70-2433-4105-90fa-ce5dac9e851a.png
+wwwroot\uploads\escudos\d9060957-7c76-4a4f-8c0f-6af663dd7fcb.png
+wwwroot\uploads\escudos\f1209e27-622c-440c-9ffe-5fadd048aa6c.png
+wwwroot\uploads\escudos\f35cdf57-deb6-417a-bbda-9be88f673d3e.png
