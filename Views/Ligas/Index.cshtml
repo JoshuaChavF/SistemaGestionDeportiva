@@ -1,0 +1,71 @@
+﻿@model IEnumerable<SistemaGestionDeportiva.Models.Liga>
+
+@{
+    ViewData["Title"] = "Ligas";
+}
+
+<h1>Ligas</h1>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>@ViewData["Title"]</h1>
+    @if (User.IsInRole("Administrador"))
+    {
+        <a asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Nueva Liga
+        </a>
+    }
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                <th>@Html.DisplayNameFor(model => model.FechaInicio)</th>
+                <th>@Html.DisplayNameFor(model => model.FechaFin)</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.LigaId">
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </a>
+                    </td>
+                    <td>@item.FechaInicio.ToString("dd/MM/yyyy")</td>
+                    <td>@item.FechaFin.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        @if (item.Estado == "Planificada")
+                        {
+                            <span class="badge bg-info">@item.Estado</span>
+                        }
+                        else if (item.Estado == "EnCurso")
+                        {
+                            <span class="badge bg-success">@item.Estado</span>
+                        }
+                        else if (item.Estado == "Finalizada")
+                        {
+                            <span class="badge bg-secondary">@item.Estado</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">@item.Estado</span>
+                        }
+                    </td>
+                    <td>
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.LigaId" class="btn btn-sm btn-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

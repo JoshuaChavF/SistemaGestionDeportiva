@@ -1,0 +1,654 @@
+﻿@model SistemaGestionDeportiva.Models.EntrenamientosViewModel
+<div class="container-fluid">
+    <!-- Selector de Liga -->
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <div class="input-group">
+                <label class="input-group-text">Liga:</label>
+                <select id="ligaSelector" class="form-select">
+                    <option value="">Seleccionar liga</option>
+                    @foreach (var liga in Model.TodasLigas)
+                    {
+                        <option value="@liga.LigaId" selected="@(liga.LigaId == Model.LigaSeleccionadaId)">
+                            @liga.Nombre
+                        </option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor de equipos -->
+    <div class="row mb-3" id="equiposContainer">
+        @if (Model.LigaSeleccionadaId.HasValue)
+        {
+            <div class="col-md-12">
+                <div class="text-center my-3">
+                    <i class="fas fa-spinner fa-spin fa-2x"></i>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-12">
+                <div class="alert alert-info">Seleccione una liga para ver sus equipos</div>
+            </div>
+        }
+    </div>
+</div>
+        <!-- Botón para abrir el modal -->
+        <button id="abrirModalBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoEntrenamientoModal">
+            <i class="fas fa-plus"></i> Nuevo Entrenamiento
+        </button>
+
+<!-- Modal para crear entrenamiento -->
+<div class="modal fade" id="nuevoEntrenamientoModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Programar Nuevo Entrenamiento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="formNuevoEntrenamiento" action="@Url.Action("CrearEntrenamiento", "Entrenamientos")" method="post">
+                @Html.AntiForgeryToken()
+                <div class="mb-3">
+                    <label class="form-label">Liga *</label>
+                    <select id="modalLigaSelector" name="ligaId" class="form-select" required>
+                        <option value="">Seleccionar liga</option>
+                        @foreach (var liga in Model.TodasLigas)
+                        {
+                            <option value="@liga.LigaId">@liga.Nombre</option>
+                        }
+                    </select>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Equipo *</label>
+                        <select name="equipoId" id="selectEquipo" class="form-select" required>
+                            <option value="">Seleccionar equipo</option>
+                            @if (Model.EquiposDeLiga != null)
+                            {
+                                foreach (var equipo in Model.EquiposDeLiga)
+                                {
+                                    <option value="@equipo.EquipoId">@equipo.Nombre</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Fecha y Hora *</label>
+                        <input type="datetime-local" name="fechaHora" class="form-control" required
+                               min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Duración (minutos) *</label>
+                        <input type="number" name="duracion" class="form-control" min="30" max="240"
+                               value="90" required />
+                    </div>
+                </div>
+                <div class="mb-3">
+    <label class="form-label">Objetivo *</label>
+    <input type="text" name="objetivo" class="form-control" required />
+</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Guardar Entrenamiento
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Filtros</h5>
+                </div>
+                <div class="card-body">
+                    <div id="calendar-filter">
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" id="show-partidos" checked>
+                            <label class="form-check-label" for="show-partidos">Mostrar Partidos</label>
+                        </div>
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" id="show-entrenamientos" checked>
+                            <label class="form-check-label" for="show-entrenamientos">Mostrar Entrenamientos</label>
+                        </div>
+                    </div>
+                    <hr>
+                    <button id="add-event-btn" class="btn btn-primary w-100">
+                        <i class="fas fa-plus"></i> Nuevo Evento
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">Resumen Liga</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Partidos:</strong> @Model.NumPartidos</p>
+                    <p><strong>Entrenamientos:</strong> @Model.NumEntrenamientos</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body p-0">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Styles {
+    <style>
+        #calendar {
+            min-height: 600px;
+        }
+
+        .fc-event {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+            .fc-event:hover {
+                transform: scale(1.02);
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+
+        .fc-toolbar-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        #ligaSelector {
+            max-width: 300px;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        const ligaSelector = document.getElementById('ligaSelector');
+                const equiposContainer = document.getElementById('equiposContainer');
+                const equipoSelectModal = document.querySelector('#nuevoEntrenamientoModal select[name="equipoId"]');
+                const modalLigaSelector = document.getElementById('modalLigaSelector');
+                let calendar; // Variable global para el calendario
+                                // Inicialización del calendario
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar el calendario
+            var calendarEl = document.getElementById('calendar');
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: [], // Inicialmente vacío
+                eventClick: function(info) {
+                    mostrarDetallesEvento(info.event);
+                },
+                eventDisplay: 'block',
+                eventTimeFormat: { // Formato de hora
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                }
+            });
+            calendar.render();
+
+            // Cargar entrenamientos si hay una liga seleccionada al inicio
+                   document.getElementById('ligaSelector').addEventListener('change', function() {
+                if (calendar) { // Verificación adicional
+                    cargarEntrenamientosPorLiga(this.value);
+                }
+            });
+        });
+
+        // Evento para cambio de liga
+        ligaSelector.addEventListener('change', function() {
+            const ligaId = this.value;
+            cargarEquipos(ligaId);
+            actualizarEquiposModal(ligaId);
+                    console.log("Liga seleccionada:", this.value);
+            cargarEntrenamientosPorLiga(ligaId);
+                    actualizarEquiposModal(ligaId);
+        });
+
+        modalLigaSelector.addEventListener('change', function() {
+            const ligaId = this.value;
+            actualizarEquiposModal(ligaId);
+        });
+
+        // Función para cargar entrenamientos por liga
+                async function cargarEntrenamientosPorLiga(ligaId) {
+            if (!calendar) {
+                console.error("Calendario no está inicializado");
+                return;
+            }
+
+            if (!ligaId) {
+                calendar.removeAllEvents();
+                return;
+            }
+
+            try {
+                // Mostrar loading
+                calendar.addEvent({
+                    title: 'Cargando entrenamientos...',
+                    start: new Date(),
+                    allDay: true,
+                    color: '#f8f9fa',
+                    textColor: '#6c757d'
+                });
+
+                const response = await fetch(`/Entrenamientos/GetEntrenamientosPorLiga?ligaId=${ligaId}`);
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.message || 'Error al obtener entrenamientos');
+                }
+
+                // Limpiar eventos existentes (incluyendo el loading)
+                calendar.removeAllEvents();
+
+                if (data.entrenamientos && data.entrenamientos.length > 0) {
+                    data.entrenamientos.forEach(entrenamiento => {
+                        const startDate = new Date(entrenamiento.fechaHora);
+                        const endDate = new Date(startDate.getTime() + entrenamiento.duracion * 60000);
+
+                        calendar.addEvent({
+                            id: `entrenamiento_${entrenamiento.id}`,
+                            title: `Entrenamiento: ${entrenamiento.equipoNombre}`,
+                            start: startDate,
+                            end: endDate,
+                            extendedProps: {
+                                tipo: 'entrenamiento',
+                                objetivo: entrenamiento.objetivo,
+                                equipoId: entrenamiento.equipoId
+                            },
+                            color: '#28a745'
+                        });
+                    });
+                } else {
+                    calendar.addEvent({
+                        title: 'No hay entrenamientos programados',
+                        start: new Date(),
+                        allDay: true,
+                        color: '#6c757d'
+                    });
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                calendar.removeAllEvents();
+                calendar.addEvent({
+                    title: 'Error al cargar entrenamientos',
+                    start: new Date(),
+                    allDay: true,
+                    color: '#dc3545'
+                });
+            }
+        }
+
+        // Función para mostrar detalles del evento
+        function mostrarDetallesEvento(evento) {
+            let contenido = `<h5>${evento.title}</h5>`;
+
+            if (evento.extendedProps.tipo === 'entrenamiento') {
+                const start = evento.start ? evento.start.toLocaleString() : 'No especificada';
+                const duration = evento.end && evento.start ?
+                    Math.round((evento.end - evento.start) / 60000) + ' minutos' : 'No especificada';
+
+                contenido += `
+                    <p><strong>Tipo:</strong> Entrenamiento</p>
+                    <p><strong>Fecha y Hora:</strong> ${start}</p>
+                    <p><strong>Duración:</strong> ${duration}</p>
+                    <p><strong>Objetivo:</strong> ${evento.extendedProps.objetivo || 'No especificado'}</p>
+                `;
+            }
+
+            // Usar SweetAlert para mostrar los detalles
+            Swal.fire({
+                title: 'Detalles del Evento',
+                html: contenido,
+                confirmButtonText: 'Cerrar',
+                showCancelButton: true,
+                cancelButtonText: 'Editar',
+                cancelButtonColor: '#3085d6'
+            }).then((result) => {
+                if (result.isDismissed && result.dismiss === Swal.DismissReason.cancel) {
+                    // Aquí puedes implementar la lógica para editar el evento
+                    console.log('Editar evento', evento.id);
+                }
+            });
+        }
+
+        // Filtro para mostrar/ocultar entrenamientos
+        document.getElementById('show-entrenamientos').addEventListener('change', function() {
+            calendar.getEvents().forEach(event => {
+                if (event.extendedProps.tipo === 'entrenamiento') {
+                    event.setProp('display', this.checked ? 'auto' : 'none');
+                }
+            });
+        });
+
+
+        // Cargar equipos iniciales si hay una liga seleccionada
+        if (ligaSelector.value) {
+            cargarEquipos(ligaSelector.value);
+        }
+
+        // Evento para cambio de liga
+        ligaSelector.addEventListener('change', function() {
+            const ligaId = this.value;
+            cargarEquipos(ligaId);
+            actualizarEquiposModal(ligaId);
+        });
+                modalLigaSelector.addEventListener('change', function () {
+            const ligaId = this.value;
+            actualizarEquiposModal(ligaId);
+        });
+              
+        // Función para cargar equipos en el contenedor principal
+        async function cargarEquipos(ligaId) {
+            if (!ligaId) {
+                equiposContainer.innerHTML = `
+                    <div class="col-md-12">
+                        <div class="alert alert-info">Seleccione una liga para ver sus equipos</div>
+                    </div>`;
+                return;
+            }
+
+            // Mostrar spinner de carga
+            equiposContainer.innerHTML = `
+                <div class="col-md-12">
+                    <div class="text-center my-3">
+                        <i class="fas fa-spinner fa-spin fa-2x"></i>
+                        <p>Cargando equipos...</p>
+                    </div>
+                </div>`;
+
+            try {
+                const response = await fetch(`/Entrenamientos/GetEquiposPorLiga?ligaId=${ligaId}`);
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.message || 'Error al obtener equipos');
+                }
+
+                if (data.count === 0) {
+                    equiposContainer.innerHTML = `
+                        <div class="col-md-12">
+                            <div class="alert alert-warning">No hay equipos registrados en esta liga</div>
+                        </div>`;
+                } else {
+                    equiposContainer.innerHTML = `
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <label class="input-group-text">Equipos de la liga:</label>
+                                <select class="form-select" disabled>
+                                    <option>${data.count} equipos cargados</option>
+                                </select>
+                            </div>
+                        </div>`;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                equiposContainer.innerHTML = `
+                    <div class="col-md-12">
+                        <div class="alert alert-danger">Error al cargar equipos: ${error.message}</div>
+                    </div>`;
+            }
+        }
+
+        // Función para actualizar equipos en el modal
+        async function actualizarEquiposModal(ligaId) {
+            if (!ligaId || !equipoSelectModal) return;
+
+            // Guardar selección actual
+            const selectedValue = equipoSelectModal.value;
+
+            // Mostrar estado de carga
+            equipoSelectModal.innerHTML = '<option value="">Cargando equipos...</option>';
+            equipoSelectModal.disabled = true;
+
+            try {
+                const response = await fetch(`/Entrenamientos/GetEquiposPorLiga?ligaId=${ligaId}`);
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.message || 'Error al obtener equipos');
+                }
+
+                // Limpiar y cargar nuevas opciones
+                equipoSelectModal.innerHTML = '<option value="">Seleccionar equipo</option>';
+
+                if (data.equipos && data.equipos.length > 0) {
+                    data.equipos.forEach(equipo => {
+                        const option = document.createElement('option');
+                        option.value = equipo.id;
+                        option.textContent = equipo.nombre;
+                        equipoSelectModal.appendChild(option);
+                    });
+
+                    // Restaurar selección previa si existe
+                    if (selectedValue) {
+                        equipoSelectModal.value = selectedValue;
+                    }
+                } else {
+                    equipoSelectModal.innerHTML = '<option value="">No hay equipos en esta liga</option>';
+                }
+
+                equipoSelectModal.disabled = false;
+            } catch (error) {
+                console.error('Error:', error);
+                equipoSelectModal.innerHTML = '<option value="">Error al cargar equipos</option>';
+            }
+        }
+
+        // Cargar equipos en el modal al abrirlo
+        $('#nuevoEntrenamientoModal').on('show.bs.modal', function() {
+            const ligaId = ligaSelector.value;
+            if (ligaId) {
+                actualizarEquiposModal(ligaId);
+            }
+        });
+                       ocument.getElementById('formNuevoEntrenamiento')?.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const form = this;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    
+    try {
+        // Validación básica del formulario
+        const ligaId = form.elements['ligaId'].value;
+        const equipoId = form.elements['equipoId'].value;
+        const fechaHora = form.elements['fechaHora'].value;
+        const duracion = form.elements['duracion'].value;
+        
+        // Verificar que los valores existen
+        if (!ligaId || !equipoId || !fechaHora || !duracion) {
+            throw new Error('Por favor complete todos los campos');
+        }
+        
+        // Convertir a números
+        const ligaIdNum = parseInt(ligaId);
+        const equipoIdNum = parseInt(equipoId);
+        const duracionNum = parseInt(duracion);
+        
+        if (isNaN(ligaIdNum) || isNaN(equipoIdNum) || isNaN(duracionNum)) {
+            throw new Error('Los valores numéricos no son válidos');
+        }
+        
+        // Mostrar estado de carga
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Guardando...';
+        
+        // Preparar los datos para enviar
+        const formData = new FormData();
+        formData.append('ligaId', ligaIdNum);
+        formData.append('equipoId', equipoIdNum);
+        formData.append('fechaHora', new Date(fechaHora).toISOString());
+        formData.append('duracion', duracionNum);
+        formData.append('__RequestVerificationToken', document.querySelector('input[name="__RequestVerificationToken"]').value);
+        
+        // Enviar al servidor
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData
+        });
+        
+        // Procesar la respuesta
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(errorText || 'Error en el servidor');
+        }
+        
+        const result = await response.json();
+        
+        if (!result.success) {
+            throw new Error(result.message || 'Error al crear el entrenamiento');
+        }
+        
+        // Éxito
+        alert(result.message);
+        bootstrap.Modal.getInstance(form.closest('.modal')).hide();
+        setTimeout(() => location.reload(), 1000);
+        
+    } catch (error) {
+        console.error('Error:', error);
+        alert(`Error: ${error.message}`);
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+    }
+});
+        ligaSelector.addEventListener('change', function() {
+            const ligaId = this.value;
+            cargarEquipos(ligaId);
+            actualizarEquiposModal(ligaId);
+            cargarEntrenamientosPorLiga(ligaId); // Nueva función para cargar entrenamientos
+        });
+
+        // Función para cargar entrenamientos por liga
+        async function cargarEntrenamientosPorLiga(ligaId) {
+            if (!ligaId) {
+                // Limpiar el calendario si no hay liga seleccionada
+                calendar.removeAllEvents();
+                return;
+            }
+
+            try {
+                // Mostrar indicador de carga
+                calendar.addEvent({
+                    title: 'Cargando entrenamientos...',
+                    start: new Date(),
+                    allDay: true,
+                    color: '#f8f9fa',
+                    textColor: '#6c757d'
+                });
+
+                const response = await fetch(`/Entrenamientos/GetEntrenamientosPorLiga?ligaId=${ligaId}`);
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.message || 'Error al obtener entrenamientos');
+                }
+
+                // Limpiar eventos existentes
+                calendar.removeAllEvents();
+
+                // Añadir nuevos eventos al calendario
+                if (data.entrenamientos && data.entrenamientos.length > 0) {
+                    data.entrenamientos.forEach(entrenamiento => {
+                        calendar.addEvent({
+                            id: `entrenamiento_${entrenamiento.id}`,
+                            title: `Entrenamiento: ${entrenamiento.equipoNombre}`,
+                            start: entrenamiento.fechaHora,
+                            end: new Date(new Date(entrenamiento.fechaHora).getTime() + entrenamiento.duracion * 60000),
+                            extendedProps: {
+                                tipo: 'entrenamiento',
+                                objetivo: entrenamiento.objetivo,
+                                equipoId: entrenamiento.equipoId
+                            },
+                            color: '#28a745' // Color verde para entrenamientos
+                        });
+                    });
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                // Mostrar mensaje de error en el calendario
+                calendar.addEvent({
+                    title: 'Error al cargar entrenamientos',
+                    start: new Date(),
+                    allDay: true,
+                    color: '#dc3545',
+                    textColor: '#ffffff'
+                });
+            }
+        }
+                document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar el calendario
+            var calendarEl = document.getElementById('calendar');
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: [], // Inicialmente vacío
+                eventClick: function(info) {
+                    // Mostrar detalles del evento al hacer clic
+                    mostrarDetallesEvento(info.event);
+                }
+            });
+            calendar.render();
+
+            // Cargar entrenamientos si hay una liga seleccionada al inicio
+            if (ligaSelector.value) {
+                cargarEntrenamientosPorLiga(ligaSelector.value);
+            }
+        });
+
+        function mostrarDetallesEvento(evento) {
+            let contenido = `<h5>${evento.title}</h5>`;
+
+            if (evento.extendedProps.tipo === 'entrenamiento') {
+                contenido += `
+                    <p><strong>Tipo:</strong> Entrenamiento</p>
+                    <p><strong>Fecha:</strong> ${evento.start.toLocaleString()}</p>
+                    <p><strong>Duración:</strong> ${(evento.end - evento.start) / 60000} minutos</p>
+                    <p><strong>Objetivo:</strong> ${evento.extendedProps.objetivo || 'No especificado'}</p>
+                `;
+            }
+
+            // Puedes usar SweetAlert, Bootstrap modal o cualquier otro método para mostrar esto
+            Swal.fire({
+                title: 'Detalles del Evento',
+                html: contenido,
+                confirmButtonText: 'Cerrar'
+            });
+        }
+                document.getElementById('show-entrenamientos').addEventListener('change', function() {
+            calendar.getEvents().forEach(event => {
+                if (event.extendedProps.tipo === 'entrenamiento') {
+                    event.setProp('display', this.checked ? 'auto' : 'none');
+                }
+            });
+        });
+    </script>
+}

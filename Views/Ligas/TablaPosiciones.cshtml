@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SistemaGestionDeportiva.Models.TablaPosicionesViewModel>
+@{
+    ViewData["Title"] = $"Tabla de Posiciones - {ViewData["LigaNombre"]}";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Pos</th>
+            <th>Equipo</th>
+            <th>PJ</th>
+            <th>PG</th>
+            <th>PE</th>
+            <th>PP</th>
+            <th>GF</th>
+            <th>GC</th>
+            <th>DG</th>
+            <th>Pts</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int posicion = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@posicion</td>
+                <td>
+                    <img src="@item.Equipo.EscudoUrl" alt="Escudo" style="height: 30px; margin-right: 10px;" />
+                    @item.Equipo.Nombre
+                </td>
+                <td>@item.PartidosJugados</td>
+                <td>@item.PartidosGanados</td>
+                <td>@item.PartidosEmpatados</td>
+                <td>@item.PartidosPerdidos</td>
+                <td>@item.GolesAFavor</td>
+                <td>@item.GolesEnContra</td>
+                <td>@item.DiferenciaGoles</td>
+                <td><strong>@item.Puntos</strong></td>
+            </tr>
+            posicion++;
+        }
+    </tbody>
+</table>
+
+<div class="mt-4">
+    <a asp-action="Details" asp-route-id="@Model.FirstOrDefault()?.Equipo.LigaId" class="btn btn-secondary">Volver a la Liga</a>
+</div>

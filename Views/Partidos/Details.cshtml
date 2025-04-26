@@ -1,0 +1,644 @@
+﻿@model SistemaGestionDeportiva.Models.Partido
+
+@{
+    ViewData["Title"] = "Detalles del Partido";
+}
+
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3">
+            <h3 class="mb-0"><i class="fas fa-futbol me-2"></i>Resumen del Partido</h3>
+            <a asp-action="Index" asp-route-ligaId="@Model.LigaId" class="btn btn-outline-light btn-sm">
+                <i class="fas fa-arrow-left me-1"></i> Volver al Calendario
+            </a>
+        </div>
+
+        <div class="card-body p-0">
+            <!-- Encabezado con información del partido -->
+            <div class="bg-light p-3 border-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span id="fechaPartido" class="ms-2">@Model.FechaHora.ToString("f")</span>
+
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            <button class="btn btn-sm btn-outline-primary ms-3" id="editarFechaBtn">
+                                <i class="fas fa-edit"></i> Cambiar
+                            </button>
+                        }
+                        <div id="editarFechaForm" style="display: none;">
+                            <form asp-action="ActualizarFecha" method="post" class="row g-2">
+                                <input type="hidden" name="id" value="@Model.PartidoId" />
+                                <div class="col-8">
+                                    <input type="datetime-local" name="nuevaFecha" class="form-control"
+                                           value="@Model.FechaHora.ToString("yyyy-MM-ddTHH:mm")" />
+                                </div>
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        <i class="fas fa-check"></i> Guardar
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm" id="cancelarEdicionFecha">
+                                        <i class="fas fa-times"></i> Cancelar
+                                    </button>
+                                </div>
+                            </form>
+                        <p class="mb-1"><strong><i class="fas fa-map-marker-alt me-2"></i>Estadio:</strong> @Model.Ubicacion</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                            <div class="text-muted small">
+                                <span>Creado: @Model.FechaCreacion.ToString("g")</span>
+                                @if (Model.FechaModificacion.HasValue)
+                                {
+                                    <span class="ms-2">Modificado: @Model.FechaModificacion.Value.ToString("g")</span>
+                                }
+                            </div>
+                        <span class="badge bg-@(Model.Estado == "Finalizado" ? "success" : Model.Estado == "Programado" ? "warning" : "danger") fs-6">
+                            @Model.Estado
+                        </span>
+                        @if (Model.Estado == "Finalizado")
+                        {
+                            <p class="mt-2 mb-0">
+                                <strong><i class="far fa-clock me-2"></i>Duración:</strong>
+                                90'
+                                @if (Model.TiempoExtra)
+                                {
+                                    <span>+ 30'</span>
+                                }
+                                @if (Model.Penales)
+                                {
+                                    <span>(Penales)</span>
+                                }
+                            </p>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marcador principal -->
+            <div class="row align-items-center py-4" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.05));">
+                <div class="col-md-5 text-center">
+                    <img src="@Model.EquipoLocal.EscudoUrl" alt="Escudo" style="height: 100px; width: 100px;" class="mb-2" />
+                    <h4 class="fw-bold">@Model.EquipoLocal.Nombre</h4>
+                    @if (Model.Estado == "Finalizado")
+                    {
+                        <div class="mt-2">
+                            @if (Model.GolesLocal > Model.GolesVisitante)
+                            {
+                                <span class="badge bg-success">GANADOR</span>
+                            }
+                            else if (Model.GolesLocal < Model.GolesVisitante)
+                            {
+                                <span class="badge bg-danger">PERDEDOR</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark">EMPATE</span>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="col-md-2 text-center">
+                    <div class="display-2 fw-bold text-dark">
+                        @if (Model.Estado == "Finalizado")
+                        {
+                            <div class="d-flex justify-content-center">
+                                <span class="px-2">@Model.GolesLocal</span>
+                                <span class="px-1">-</span>
+                                <span class="px-2">@Model.GolesVisitante</span>
+                            </div>
+                            @if (Model.Penales)
+                            {
+                                <div class="small text-muted">
+                                    (@(Model.GolesLocal > Model.GolesVisitante ? Model.GolesLocal : Model.GolesVisitante) pen.)
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <span class="text-muted">VS</span>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="@Model.EquipoVisitante.EscudoUrl" alt="Escudo" style="height: 100px; width: 100px;" class="mb-2" />
+                    <h4 class="fw-bold">@Model.EquipoVisitante.Nombre</h4>
+                    @if (Model.Estado == "Finalizado")
+                    {
+                        <div class="mt-2">
+                            @if (Model.GolesVisitante > Model.GolesLocal)
+                            {
+                                <span class="badge bg-success">GANADOR</span>
+                            }
+                            else if (Model.GolesVisitante < Model.GolesLocal)
+                            {
+                                <span class="badge bg-danger">PERDEDOR</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark">EMPATE</span>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Estadísticas destacadas -->
+            <div class="row g-0 text-center border-top">
+                <div class="col-md-3 p-3 border-end">
+                    <div class="text-uppercase small text-muted mb-1">Tiros al arco</div>
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <span class="h5 fw-bold">@Model.TirosAlArcoLocal</span>
+                            <span class="small text-muted d-block">Local</span>
+                        </div>
+                        <div>
+                            <span class="h5 fw-bold">@Model.TirosAlArcoVisitante</span>
+                            <span class="small text-muted d-block">Visitante</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 p-3 border-end">
+                    <div class="text-uppercase small text-muted mb-1">Posesión</div>
+                    <div class="progress" style="height: 20px;">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: @Model.PosesionLocal%"
+                             aria-valuenow="@Model.PosesionLocal" aria-valuemin="0" aria-valuemax="100">
+                            @Model.PosesionLocal%
+                        </div>
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: @(100 - Model.PosesionLocal)%"
+                             aria-valuenow="@(100 - Model.PosesionLocal)" aria-valuemin="0" aria-valuemax="100">
+                            @(100 - Model.PosesionLocal)%
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 p-3 border-end">
+                    <div class="text-uppercase small text-muted mb-1">Faltas</div>
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <span class="h5 fw-bold">@Model.FaltasLocal</span>
+                            <span class="small text-muted d-block">Local</span>
+                        </div>
+                        <div>
+                            <span class="h5 fw-bold">@Model.FaltasVisitante</span>
+                            <span class="small text-muted d-block">Visitante</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 p-3">
+                    <div class="text-uppercase small text-muted mb-1">Tarjetas</div>
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <span class="badge bg-warning text-dark me-1">@Model.TarjetasAmarillasLocal</span>
+                            <span class="badge bg-danger me-1">@Model.TarjetasRojasLocal</span>
+                            <span class="small text-muted d-block mt-1">Local</span>
+                        </div>
+                        <div>
+                            <span class="badge bg-warning text-dark me-1">@Model.TarjetasAmarillasVisitante</span>
+                            <span class="badge bg-danger me-1">@Model.TarjetasRojasVisitante</span>
+                            <span class="small text-muted d-block mt-1">Visitante</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <input type="hidden" id="jugadoresLocalJson" value="@ViewBag.JugadoresLocal" />
+                <input type="hidden" id="jugadoresVisitanteJson" value="@ViewBag.JugadoresVisitante" />
+                <input type="hidden" name="goleadoresData" id="goleadoresData" value="" />
+            <!-- Sección de simulación -->
+                @if (Model.Estado == "Programado" && Model.FechaHora.Date <= DateTime.Today)
+            {
+                <div class="p-4 border-top">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="mb-0"><i class="fas fa-cogs me-2"></i>Simular Partido</h4>
+                        <button id="simularAutoBtn" class="btn btn-success">
+                            <i class="fas fa-magic me-2"></i>Simular Automáticamente
+                        </button>
+                    </div>
+
+                    <form asp-action="SimularPartido" method="post" class="row g-3" id="partidoForm">
+                        <input type="hidden" name="id" value="@Model.PartidoId" />
+                        @Html.AntiForgeryToken()
+
+                        <!-- Marcador -->
+                        <div class="col-md-12">
+                            <div class="card mb-3">
+                                <div class="card-header bg-secondary text-white">
+                                    <h5 class="mb-0">Marcador Final</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-5 text-center">
+                                            <label class="form-label">@Model.EquipoLocal.Nombre</label>
+                                            <input type="number" name="golesLocal" class="form-control form-control-lg text-center"
+                                                   min="0" max="15" value="@(Model.GolesLocal ?? 0)" id="golesLocal" />
+                                        </div>
+                                        <div class="col-md-2 text-center d-flex align-items-center justify-content-center">
+                                            <span class="display-6">-</span>
+                                        </div>
+                                        <div class="col-md-5 text-center">
+                                            <label class="form-label">@Model.EquipoVisitante.Nombre</label>
+                                            <input type="number" name="golesVisitante" class="form-control form-control-lg text-center"
+                                                   min="0" max="15" value="@(Model.GolesVisitante ?? 0)" id="golesVisitante" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Estadísticas -->
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-header bg-secondary text-white">
+                                    <h5 class="mb-0">Estadísticas del Partido</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">Tiros al Arco</label>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input type="number" name="tirosAlArcoLocal" class="form-control"
+                                                       min="0" max="50" value="@Model.TirosAlArcoLocal" id="tirosLocal" placeholder="Local" />
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="number" name="tirosAlArcoVisitante" class="form-control"
+                                                       min="0" max="50" value="@Model.TirosAlArcoVisitante" id="tirosVisitante" placeholder="Visitante" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Posesión (%)</label>
+                                        <input type="range" name="posesionLocal" class="form-range" min="0" max="100"
+                                               value="@Model.PosesionLocal" id="posesionSlider"
+                                               oninput="document.getElementById('posesionValue').innerText = this.value + '%'">
+                                        <div class="d-flex justify-content-between">
+                                            <small>@Model.EquipoLocal.Nombre</small>
+                                            <small id="posesionValue">@Model.PosesionLocal%</small>
+                                            <small>@Model.EquipoVisitante.Nombre</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Faltas</label>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input type="number" name="faltasLocal" class="form-control"
+                                                       min="0" max="50" value="@Model.FaltasLocal" id="faltasLocal" placeholder="Local" />
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="number" name="faltasVisitante" class="form-control"
+                                                       min="0" max="50" value="@Model.FaltasVisitante" id="faltasVisitante" placeholder="Visitante" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tarjetas -->
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-header bg-secondary text-white">
+                                    <h5 class="mb-0">Tarjetas</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-6">
+                                            <label class="form-label">Amarillas</label>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <input type="number" name="tarjetasAmarillasLocal" class="form-control"
+                                                           min="0" max="11" value="@Model.TarjetasAmarillasLocal" id="amarillasLocal" placeholder="Local" />
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="number" name="tarjetasAmarillasVisitante" class="form-control"
+                                                           min="0" max="11" value="@Model.TarjetasAmarillasVisitante" id="amarillasVisitante" placeholder="Visitante" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label">Rojas</label>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <input type="number" name="tarjetasRojasLocal" class="form-control"
+                                                           min="0" max="5" value="@Model.TarjetasRojasLocal" id="rojasLocal" placeholder="Local" />
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="number" name="tarjetasRojasVisitante" class="form-control"
+                                                           min="0" max="5" value="@Model.TarjetasRojasVisitante" id="rojasVisitante" placeholder="Visitante" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Resumen del Partido</label>
+                                        <textarea name="observaciones" class="form-control" rows="3"
+                                                  id="observaciones" placeholder="Goles, jugadores destacados, incidentes...">@Model.Observaciones</textarea>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="tiempoExtra" id="tiempoExtra" value="true" />
+                                                <label class="form-check-label" for="tiempoExtra">Tiempo Extra</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="penales" id="penales" value="true" />
+                                                <label class="form-check-label" for="penales">Penales</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botón de envío -->
+                        <div class="col-12 text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg px-5">
+                                <i class="fas fa-save me-2"></i>Guardar Resultado
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            }
+
+            <!-- Observaciones -->
+            @if (!string.IsNullOrEmpty(Model.Observaciones))
+            {
+                <div class="p-4 border-top bg-light">
+                    <h4><i class="fas fa-clipboard-list me-2"></i>Resumen del Partido</h4>
+                    <div class="mt-3 p-3 bg-white rounded border">
+                        @Html.Raw(Model.Observaciones.Replace("\n", "<br />"))
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .progress-bar {
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .form-range::-webkit-slider-thumb {
+            background: #0d6efd;
+        }
+
+        .card-header {
+            font-weight: 600;
+        }
+
+        .display-2 {
+            font-size: 3.5rem;
+        }
+
+        .bg-primary {
+            background-color: #1a3e8c !important;
+        }
+
+        .card {
+            border-radius: 0.5rem;
+        }
+
+        .card-header {
+            border-radius: 0.5rem 0.5rem 0 0 !important;
+        }
+
+        #simularAutoBtn {
+            transition: all 0.3s ease;
+        }
+
+            #simularAutoBtn:hover {
+                transform: scale(1.05);
+            }
+           
+            #editarFechaForm {
+                transition: all 0.3s ease;
+            }
+
+            #fechaPartido {
+                font-weight: 500;
+                background-color: #f8f9fa;
+                padding: 0.2rem 0.5rem;
+                border-radius: 0.25rem;
+            }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        // Inicializar tooltips
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        // Actualizar valor del slider de posesión
+        document.getElementById('posesionSlider')?.addEventListener('input', function() {
+            document.getElementById('posesionValue').innerText = this.value + '%';
+        });
+
+        // Validación básica del formulario
+        document.querySelector('form')?.addEventListener('submit', function(e) {
+            const golesLocal = parseInt(document.querySelector('input[name="golesLocal"]').value);
+            const golesVisitante = parseInt(document.querySelector('input[name="golesVisitante"]').value);
+            const penales = document.querySelector('input[name="penales"]').checked;
+
+            if (penales && golesLocal === golesVisitante) {
+                alert('En caso de penales, el marcador no puede ser empate');
+                e.preventDefault();
+            }
+        });
+
+        // Simulación automática
+        document.getElementById('simularAutoBtn')?.addEventListener('click', function() {
+            const rnd = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+            const equipos = ['@Model.EquipoLocal.Nombre', '@Model.EquipoVisitante.Nombre'];
+
+                    // Obtener jugadores reales de la base de datos
+            const jugadoresLocal = JSON.parse(document.getElementById('jugadoresLocalJson').value);
+            const jugadoresVisitante = JSON.parse(document.getElementById('jugadoresVisitanteJson').value);
+
+                    // Filtrar jugadores que son delanteros o mediocampistas (más probables de hacer goles)
+            const jugadoresLocalAtacantes = jugadoresLocal.filter(j =>
+                j.posicion.toLowerCase().includes('delantero') ||
+                j.posicion.toLowerCase().includes('mediocampista'));
+
+            const jugadoresVisitanteAtacantes = jugadoresVisitante.filter(j =>
+                j.posicion.toLowerCase().includes('delantero') ||
+                j.posicion.toLowerCase().includes('mediocampista'));
+
+                         // Si no hay jugadores atacantes, usar todos los jugadores
+            const posiblesAnotadoresLocal = jugadoresLocalAtacantes.length > 0 ? jugadoresLocalAtacantes : jugadoresLocal;
+            const posiblesAnotadoresVisitante = jugadoresVisitanteAtacantes.length > 0 ? jugadoresVisitanteAtacantes : jugadoresVisitante;
+
+            // Generar marcador (0-5 goles)
+            const golesLocal = rnd(0, 5);
+            const golesVisitante = rnd(0, 5);
+
+            // Decidir si hay empate y tiempo extra/penales
+            const empate = golesLocal === golesVisitante;
+            const tiempoExtra = empate && rnd(0, 1) === 1;
+            const penales = tiempoExtra && rnd(0, 1) === 1;
+
+            // Actualizar campos del formulario
+            document.getElementById('golesLocal').value = golesLocal;
+            document.getElementById('golesVisitante').value = golesVisitante;
+            document.getElementById('tirosLocal').value = rnd(golesLocal * 2, golesLocal * 6);
+            document.getElementById('tirosVisitante').value = rnd(golesVisitante * 2, golesVisitante * 6);
+            document.getElementById('posesionSlider').value = rnd(35, 65);
+            document.getElementById('posesionValue').innerText = document.getElementById('posesionSlider').value + '%';
+            document.getElementById('faltasLocal').value = rnd(5, 25);
+            document.getElementById('faltasVisitante').value = rnd(5, 25);
+            document.getElementById('amarillasLocal').value = rnd(0, 5);
+            document.getElementById('amarillasVisitante').value = rnd(0, 5);
+            document.getElementById('rojasLocal').value = rnd(0, 2);
+            document.getElementById('rojasVisitante').value = rnd(0, 2);
+            document.getElementById('tiempoExtra').checked = tiempoExtra;
+            document.getElementById('penales').checked = penales;
+
+            // Generar resumen del partido
+            const eventos = [];
+            const goleadores = [];
+            const minutosGolesLocal = [];
+            const minutosGolesVisitante = [];
+            const minutosAmarillasLocal = [];
+            const minutosAmarillasVisitante = [];
+            const minutosRojasLocal = [];
+            const minutosRojasVisitante = [];
+
+            // Generar goles locales
+            for (let i = 0; i < golesLocal; i++) {
+                const minuto = rnd(1, tiempoExtra ? 120 : 90);
+                minutosGolesLocal.push(minuto);
+                const jugador = posiblesAnotadoresLocal[rnd(0, posiblesAnotadoresLocal.length - 1)];
+                    eventos.push({minuto, tipo: 'gol', equipo: 0, jugador: jugador.nombre,
+                posicion: jugador.posicion});
+                        goleadores.push({
+                equipo: 0,
+                jugadorId: jugador.id,
+                jugadorNombre: jugador.nombre,
+                posicion: jugador.posicion,
+                minuto: minuto,
+                esPenal: false // Puedes añadir lógica para penales si lo necesitas
+            });
+            }
+
+            // Generar goles visitantes
+            for (let i = 0; i < golesVisitante; i++) {
+                const minuto = rnd(1, tiempoExtra ? 120 : 90);
+                minutosGolesVisitante.push(minuto);
+                    const jugador = posiblesAnotadoresVisitante[rnd(0, posiblesAnotadoresVisitante.length - 1)];
+                    eventos.push({minuto, tipo: 'gol', equipo: 1,jugador: jugador.nombre,
+                posicion: jugador.posicion});
+                        goleadores.push({
+                equipo: 1,
+                jugadorId: jugador.id,
+                jugadorNombre: jugador.nombre,
+                posicion: jugador.posicion,
+                minuto: minuto,
+                esPenal: false
+            });
+            }
+
+            // Generar tarjetas amarillas locales
+            for (let i = 0; i < document.getElementById('amarillasLocal').value; i++) {
+                const minuto = rnd(1, tiempoExtra ? 120 : 90);
+                minutosAmarillasLocal.push(minuto);
+                    eventos.push({minuto, tipo: 'amarilla', equipo: 0,  jugador: jugadoresLocal[rnd(0, jugadoresLocal.length - 1)].nombre});
+            }
+
+            // Generar tarjetas amarillas visitantes
+            for (let i = 0; i < document.getElementById('amarillasVisitante').value; i++) {
+                const minuto = rnd(1, tiempoExtra ? 120 : 90);
+                minutosAmarillasVisitante.push(minuto);
+                    eventos.push({minuto, tipo: 'amarilla', equipo: 1,jugador: jugadoresVisitante[rnd(0, jugadoresVisitante.length - 1)].nombre});
+            }
+
+            // Generar tarjetas rojas locales
+            for (let i = 0; i < document.getElementById('rojasLocal').value; i++) {
+                const minuto = rnd(1, tiempoExtra ? 120 : 90);
+                minutosRojasLocal.push(minuto);
+                    eventos.push({minuto, tipo: 'roja', equipo: 0,jugador: jugadoresLocal[rnd(0, jugadoresLocal.length - 1)].nombre});
+            }
+
+            // Generar tarjetas rojas visitantes
+            for (let i = 0; i < document.getElementById('rojasVisitante').value; i++) {
+                const minuto = rnd(1, tiempoExtra ? 120 : 90);
+                minutosRojasVisitante.push(minuto);
+                    eventos.push({minuto, tipo: 'roja', equipo: 1,jugador: jugadoresVisitante[rnd(0, jugadoresVisitante.length - 1)].nombre});
+            }
+
+            // Ordenar eventos por minuto
+            eventos.sort((a, b) => a.minuto - b.minuto);
+
+            // Generar texto del resumen
+            let resumen = "RESUMEN DEL PARTIDO:\n\n";
+
+            // Añadir eventos ordenados
+            eventos.forEach(evento => {
+                const equipoNombre = equipos[evento.equipo];
+                switch(evento.tipo) {
+                    case 'gol':
+                                resumen += `⚽ ${evento.minuto}' - GOOL de ${evento.jugador} (${evento.posicion}) - ${equipoNombre}\n`;
+                        break;
+                    case 'amarilla':
+                            resumen += `🟨 ${evento.minuto}' - Tarjeta amarilla para ${evento.jugador} (${equipoNombre})\n`;
+                        break;
+                    case 'roja':
+                            resumen += `🟥 ${evento.minuto}' - Tarjeta roja para ${evento.jugador} (${equipoNombre})\n`;
+                        break;
+                }
+            });
+
+            // Añadir tiempo extra si aplica
+            if (tiempoExtra) {
+                resumen += `\n⏱️ El partido requirió tiempo extra\n`;
+            }
+
+            // Añadir penales si aplica
+            if (penales) {
+                resumen += `\n🎯 El partido se definió por penales\n`;
+                resumen += `🏆 Ganador: ${golesLocal > golesVisitante ? equipos[0] : equipos[1]}\n`;
+            }
+
+            // Añadir resultado final
+            resumen += `\nRESULTADO FINAL: ${equipos[0]} ${golesLocal}-${golesVisitante} ${equipos[1]}\n`;
+
+                    // Añadir lista de goleadores
+                    // Añadir lista de goleadores
+            resumen += `\nGOLEADORES:\n`;
+            goleadores.filter(g => g.equipo === 0).forEach(g => {
+                resumen += `• ${g.jugadorNombre} (${g.posicion}) - ${g.minuto}'\n`;
+            });
+            goleadores.filter(g => g.equipo === 1).forEach(g => {
+                resumen += `• ${g.jugadorNombre} (${g.posicion}) - ${g.minuto}'\n`;
+            });
+
+            document.getElementById('observaciones').value = resumen;
+
+            // Mostrar mensaje de éxito
+            Swal.fire({
+                title: 'Partido simulado!',
+                text: 'Se han generado datos aleatorios para el partido',
+                icon: 'success',
+                confirmButtonText: 'Entendido'
+            });
+        });
+             document.getElementById('editarFechaBtn')?.addEventListener('click', function() {
+                document.getElementById('fechaPartido').style.display = 'none';
+                document.getElementById('editarFechaBtn').style.display = 'none';
+                document.getElementById('editarFechaForm').style.display = 'block';
+            });
+
+            document.getElementById('cancelarEdicionFecha')?.addEventListener('click', function() {
+                document.getElementById('fechaPartido').style.display = 'inline';
+                document.getElementById('editarFechaBtn').style.display = 'inline-block';
+                document.getElementById('editarFechaForm').style.display = 'none';
+            });
+    </script>
+}

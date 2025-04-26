@@ -1,0 +1,40 @@
+﻿@model SistemaGestionDeportiva.Models.EntrenamientosViewModel
+
+<div class="container-fluid">
+    <!-- Selector de Liga -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <div class="input-group">
+                <label class="input-group-text">Liga:</label>
+                <select id="ligaSelector" class="form-select">
+                    <option value="">-- Seleccione una Liga --</option>
+                    @foreach (var liga in Model.TodasLigas)
+                    {
+                        <option value="@liga.LigaId" selected="@(liga.LigaId == Model.LigaSeleccionadaId)">
+                            @liga.Nombre
+                        </option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4 text-end">
+            <button id="generarEntrenamientosBtn" class="btn btn-warning">
+                <i class="fas fa-magic"></i> Generar Entrenamientos
+            </button>
+        </div>
+    </div>
+
+    <!-- Resto de tu vista de calendario... -->
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('ligaSelector').addEventListener('change', function() {
+            if (this.value) {
+                window.location.href = '@Url.Action("Index")?ligaId=' + this.value;
+            } else {
+                window.location.href = '@Url.Action("Index")';
+            }
+        });
+    </script>
+}

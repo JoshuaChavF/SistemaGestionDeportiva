@@ -1,0 +1,146 @@
+﻿/* Estilo mejorado para los dropdowns del navbar */
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* Elimina el espacio entre el botón y el menú */
+}
+
+.dropdown-toggle::after {
+    transition: transform 0.2s ease-in-out;
+}
+
+.nav-item.dropdown.show .dropdown-toggle::after,
+.nav-item.dropdown:hover .dropdown-toggle::after {
+    transform: rotate(180deg);
+}
+
+/* Estilo para los menús principales */
+.nav-item.dropdown .nav-link {
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    margin: 0 0.2rem;
+    position: relative;
+}
+
+    .nav-item.dropdown .nav-link:after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 15%;
+        width: 70%;
+        height: 2px;
+        background-color: rgba(255, 255, 255, 0);
+        transition: all 0.3s ease;
+    }
+
+.nav-item.dropdown:hover .nav-link:after,
+.nav-item.dropdown.show .nav-link:after {
+    background-color: white;
+}
+
+/* Efecto hover más visible */
+.nav-item.dropdown:hover .nav-link {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+/* Estilo para los dropdowns */
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Items del dropdown más destacados */
+.dropdown-item {
+    padding: 0.5rem 1.5rem;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+    .dropdown-item:hover {
+        background-color: #0d6efd;
+        color: white !important;
+        transform: translateX(5px);
+    }
+
+    /* Iconos en los dropdowns */
+    .dropdown-item i {
+        width: 20px;
+        text-align: center;
+        margin-right: 8px;
+    }
+/* Animaciones para los dropdowns */
+.animate.slideIn {
+    animation: slideIn 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efecto de escala al hacer hover */
+.nav-item.dropdown .nav-link {
+    transition: transform 0.2s ease;
+}
+
+.nav-item.dropdown:hover .nav-link {
+    transform: scale(1.05);
+}
+
+/* Borde inferior para los menús principales */
+.navbar-nav .nav-item {
+    position: relative;
+}
+
+    .navbar-nav .nav-item:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 60%;
+        width: 1px;
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+.navbar-dark .navbar-nav .nav-link {
+    color: white !important;
+}
+
+/* Específicamente para los dropdown toggles */
+.navbar-dark .nav-item.dropdown .nav-link.dropdown-toggle {
+    color: white !important;
+    opacity: 0.95;
+}
+
+/* Efecto hover para mantener visibilidad */
+.navbar-dark .nav-item.dropdown:hover .nav-link.dropdown-toggle,
+.navbar-dark .nav-item.dropdown.show .nav-link.dropdown-toggle {
+    color: white !important;
+    opacity: 1;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Iconos junto al texto */
+.navbar-dark .nav-item.dropdown .nav-link.dropdown-toggle i {
+    color: white !important;
+}

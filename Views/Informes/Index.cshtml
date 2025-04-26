@@ -1,0 +1,168 @@
+﻿@model InformeViewModel
+
+<div class="container-fluid">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h3><i class="fas fa-chart-bar"></i> Informes y Análisis</h3>
+        </div>
+        <div class="card-body">
+            <form asp-action="GenerarInforme" method="post" id="informeForm">
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <label class="form-label">Liga</label>
+                        <select asp-for="LigaId" asp-items="ViewBag.Ligas" class="form-select">
+                            <option value="">Todas las ligas</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Equipo</label>
+                        <select asp-for="EquipoId" class="form-select" disabled>
+                            <option value="">Todos los equipos</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Fecha Inicio</label>
+                        <input asp-for="FechaInicio" type="date" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Fecha Fin</label>
+                        <input asp-for="FechaFin" type="date" class="form-control">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-chart-pie"></i> Generar Informe
+                    </button>
+                </div>
+            </form>
+
+            @if (Model.EstadisticasJugadores != null)
+            {
+                <div class="mt-5">
+                    <h4>Resultados</h4>
+
+                    <!-- Pestañas -->
+                    <ul class="nav nav-tabs" id="informeTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#jugadores" type="button">Jugadores</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tendencias" type="button">Tendencias</button>
+                        </li>
+                    </ul>
+
+                    <!-- Contenido de pestañas -->
+                    <div class="tab-content border-start border-end border-bottom p-3">
+                        <!-- Tab Jugadores -->
+                        <div class="tab-pane fade show active" id="jugadores">
+                            <partial name="_TablaJugadores" model="Model.EstadisticasJugadores" />
+                        </div>
+
+                        <!-- Tab Equipos -->
+                        <div class="tab-pane fade" id="equipos">
+                            @if (Model.EstadisticasEquipo != null)
+                            {
+                                <partial name="_EstadisticasEquipo" model="Model.EstadisticasEquipo" />
+                            }
+                        </div>
+
+                        <!-- Tab Tendencias -->
+                        <div class="tab-pane fade" id="tendencias">
+                            <partial name="_GraficoTendencias" model="Model.Tendencias" />
+                        </div>
+                    </div>
+
+                    <!-- Botones de exportación -->
+                    <div class="mt-4 text-center">
+                        <form asp-action="ExportarPDF" method="post">
+                            <input type="hidden" asp-for="LigaId" />
+                            <input type="hidden" asp-for="EquipoId" />
+                            <input type="hidden" asp-for="FechaInicio" />
+                            <input type="hidden" asp-for="FechaFin" />
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-file-pdf"></i> Exportar PDF
+                            </button>
+                        </form>
+
+                        <form asp-action="ExportarExcel" method="post" class="mt-2">
+                            <input type="hidden" asp-for="LigaId" />
+                            <input type="hidden" asp-for="EquipoId" />
+                            <input type="hidden" asp-for="FechaInicio" />
+                            <input type="hidden" asp-for="FechaFin" />
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-file-excel"></i> Exportar Excel
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Cargar equipos dinámicamente según liga seleccionada
+        $('#LigaId').change(function() {
+            var ligaId = $(this).val();
+            $('#EquipoId').empty().append('<option value="">Todos los equipos</option>');
+
+            if (ligaId) {
+                $('#EquipoId').prop('disabled', false);
+                $.getJSON('/Informes/GetEquiposByLiga', { ligaId: ligaId }, function(data) {
+                    $.each(data, function(index, item) {
+                        $('#EquipoId').append($('<option>', {
+                            value: item.value,
+                            text: item.text
+                        }));
+                    });
+                });
+            } else {
+                $('#EquipoId').prop('disabled', true);
+            }
+        });
+
+        // Inicializar gráfico de tendencias
+        function initChart() {
+            var ctx = document.getElementById('tendenciasChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: @Json.Serialize(Model.Tendencias?.Select(t => t.Periodo)),
+                    datasets: [
+                        {
+                            label: 'Goles',
+                            data: @Json.Serialize(Model.Tendencias?.Select(t => t.Goles)),
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            tension: 0.1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            if (@Json.Serialize(Model.Tendencias != null)) {
+                initChart();
+            }
+        });
+    </script>
+}

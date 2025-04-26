@@ -1,0 +1,99 @@
+﻿@model SistemaGestionDeportiva.Models.Equipo
+
+@{
+    ViewData["Title"] = "Detalles del Equipo";
+}
+
+<h1>@Model.Nombre</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <h4>Información General</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-4">Liga:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Liga.Nombre)</dd>
+
+            <dt class="col-sm-4">Colores:</dt>
+            <dd class="col-sm-8">
+                <span style="color: @Model.ColorPrincipal">Principal</span> /
+                <span style="color: @Model.ColorSecundario">Secundario</span>
+            </dd>
+        </dl>
+    </div>
+
+    <div class="col-md-6 text-center">
+        @if (!string.IsNullOrEmpty(Model.EscudoUrl))
+        {
+            <img src="@Model.EscudoUrl" alt="Escudo del equipo" class="img-fluid" style="max-height: 150px;" />
+        }
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <h4>Jugadores</h4>
+        <hr />
+        
+
+        @if (Model.Jugadores.Any())
+        {
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Posición</th>
+                        <th>Número</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var jugador in Model.Jugadores)
+                    {
+                        <tr>
+                            <td>@(jugador.Usuario?.NombreCompleto ?? jugador.Nombre)</td>
+                            <td>@jugador.Posicion</td>
+                            <td>@jugador.NumeroCamiseta</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No hay jugadores asignados a este equipo.</p>
+        }
+    </div>
+
+    <div class="col-md-6">
+        <h4>Entrenadores</h4>
+        <hr />
+        @if (Model.Entrenadores.Any())
+        {
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Especialidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var entrenador in Model.Entrenadores)
+                    {
+                        <tr>
+                            <td>@entrenador.Nombre</td>
+                            <td>@entrenador.Especialidad</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No hay entrenadores asignados a este equipo.</p>
+        }
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
+</div>

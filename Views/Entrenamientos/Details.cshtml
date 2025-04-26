@@ -1,0 +1,52 @@
+﻿@model Entrenamiento
+
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h3>Detalles del Entrenamiento</h3>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Fecha:</dt>
+                <dd class="col-sm-9">@Model.FechaHora.ToString("dd/MM/yyyy HH:mm")</dd>
+
+                <dt class="col-sm-3">Ubicación:</dt>
+                <dd class="col-sm-9">@Model.Ubicacion</dd>
+
+                <dt class="col-sm-3">Objetivo:</dt>
+                <dd class="col-sm-9">@Model.Objetivo</dd>
+            </dl>
+
+            <h4 class="mt-4">Asistencias</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Jugador</th>
+                        <th>Asistió</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var jugador in ViewBag.Jugadores as List<Jugador>)
+                    {
+                        var asistio = Model.Asistencias.FirstOrDefault(a => a.JugadorId == jugador.JugadorId)?.Asistio ?? false;
+                        <tr>
+                            <td>@jugador.Nombre</td>
+                            <td>
+                                @if (asistio)
+                                {
+                                    <span class="badge bg-success">Presente</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">Ausente</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <a asp-action="Index" class="btn btn-secondary">Volver</a>
+        </div>
+    </div>
+</div>

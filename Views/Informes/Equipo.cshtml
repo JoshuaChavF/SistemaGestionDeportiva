@@ -1,0 +1,138 @@
+﻿@model SistemaGestionDeportiva.Models.InformeEquipoViewModel
+
+@{
+    ViewData["Title"] = $"Informe del Equipo: {Model.Equipo.Nombre}";
+}
+
+<h2>@ViewData["Title"]</h2>
+<h4>@Model.Equipo.Liga.Nombre</h4>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Resumen Estadístico</h5>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-light rounded">
+                            <h3>@Model.PartidosJugados</h3>
+                            <p class="text-muted mb-0">Partidos Jugados</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-light rounded">
+                            <h3>@Model.PartidosGanados</h3>
+                            <p class="text-muted mb-0">Partidos Ganados</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-light rounded">
+                            <h3>@Model.PartidosEmpatados</h3>
+                            <p class="text-muted mb-0">Partidos Empatados</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-light rounded">
+                            <h3>@Model.PartidosPerdidos</h3>
+                            <p class="text-muted mb-0">Partidos Perdidos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-light rounded">
+                            <h3>@Model.GolesAFavor</h3>
+                            <p class="text-muted mb-0">Goles a Favor</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-light rounded">
+                            <h3>@Model.GolesEnContra</h3>
+                            <p class="text-muted mb-0">Goles en Contra</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <a asp-action="ExportarExcelEquipo" asp-route-id="@Model.Equipo.EquipoId" class="btn btn-success">Exportar a Excel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Jugadores Destacados</h5>
+                <hr />
+
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Jugador</th>
+                            <th>Goles</th>
+                            <th>Asistencias</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var jugador in Model.JugadoresDestacados)
+                        {
+                            <tr>
+                                <td>@jugador.Jugador.Usuario.NombreCompleto</td>
+                                <td>@jugador.Goles</td>
+                                <td>@jugador.Asistencias</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Últimos Partidos</h5>
+                <hr />
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Rival</th>
+                            <th>Resultado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var partido in Model.UltimosPartidos)
+                        {
+                            <tr>
+                                <td>@partido.Fecha.ToShortDateString()</td>
+                                <td>@(partido.EsLocal ? "vs " : "@ ")@partido.Rival</td>
+                                <td>
+                                    @partido.GolesFavor - @partido.GolesContra
+                                    <span class="badge @(partido.Resultado == "G" ? "badge-success" :
+                                                      partido.Resultado == "E" ? "badge-warning" : "badge-danger") float-right">
+                                        @(partido.Resultado == "G" ? "Ganado" : partido.Resultado == "E" ? "Empate" : "Perdido")
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-controller="Equipos" asp-action="Details" asp-route-id="@Model.Equipo.EquipoId" class="btn btn-secondary">Volver al Equipo</a>
+</div>

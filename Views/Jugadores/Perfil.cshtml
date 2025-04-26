@@ -1,0 +1,84 @@
+﻿@model SistemaGestionDeportiva.Models.Jugador
+
+@{
+    ViewData["Title"] = $"Perfil de {Model.Usuario.NombreCompleto}";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <img src="https://via.placeholder.com/150" class="rounded-circle mb-3" alt="Foto de perfil">
+                <h3>@Model.Usuario.NombreCompleto</h3>
+                <p class="text-muted">@Model.Posicion</p>
+
+                <div class="mb-3">
+                    <span class="badge badge-primary">@Model.NumeroCamiseta</span>
+                </div>
+
+                <h5>@Model.Equipo.Nombre</h5>
+                <p class="text-muted">@Model.Equipo.Liga.Nombre</p>
+
+                @if (User.Identity.IsAuthenticated && (User.IsInRole("Administrador") || User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value == Model.UsuarioId))
+                {
+                    <a asp-action="Edit" asp-route-id="@Model.JugadorId" class="btn btn-warning btn-sm">Editar Perfil</a>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h4>Estadísticas</h4>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <h5>@Model.Estadisticas.Sum(e => e.Goles)</h5>
+                        <p class="text-muted">Goles</p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <h5>@Model.Estadisticas.Sum(e => e.Asistencias)</h5>
+                        <p class="text-muted">Asistencias</p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <h5>@Model.Estadisticas.Count</h5>
+                        <p class="text-muted">Partidos Jugados</p>
+                    </div>
+                </div>
+
+                <h5 class="mt-4">Últimos Partidos</h5>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Partido</th>
+                            <th>Goles</th>
+                            <th>Asistencias</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var estadistica in Model.Estadisticas.OrderByDescending(e => e.Partido.FechaHora).Take(5))
+                        {
+                            <tr>
+                                <td>@estadistica.Partido.FechaHora.ToShortDateString()</td>
+                                <td>
+                                    @estadistica.Partido.EquipoLocal.Nombre vs @estadistica.Partido.EquipoVisitante.Nombre
+                                </td>
+                                <td>@estadistica.Goles</td>
+                                <td>@estadistica.Asistencias</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <a asp-controller="Estadisticas" asp-action="Jugador" asp-route-jugadorId="@Model.JugadorId" class="btn btn-sm btn-primary">Ver todas las estadísticas</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a href="javascript:history.back()" class="btn btn-secondary">Volver</a>
+</div>

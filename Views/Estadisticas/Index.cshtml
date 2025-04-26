@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SistemaGestionDeportiva.Models.EstadisticaPartido>
+@{
+    var partido = ViewData["Partido"] as SistemaGestionDeportiva.Models.Partido;
+    ViewData["Title"] = $"Estadísticas del Partido: {partido.EquipoLocal.Nombre} vs {partido.EquipoVisitante.Nombre}";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create" asp-route-partidoId="@partido.PartidoId" class="btn btn-primary">Agregar Estadísticas</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Jugador</th>
+            <th>Equipo</th>
+            <th>Goles</th>
+            <th>Asistencias</th>
+            <th>Tarjetas</th>
+            <th>Minutos</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Jugador.Usuario.NombreCompleto</td>
+                <td>@(item.Jugador.EquipoId == partido.EquipoLocalId ? partido.EquipoLocal.Nombre : partido.EquipoVisitante.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.Goles)</td>
+                <td>@Html.DisplayFor(modelItem => item.Asistencias)</td>
+                <td>
+                    @if (item.TarjetasAmarillas > 0)
+                    {
+                        <span class="badge badge-warning">@item.TarjetasAmarillas Amarilla(s)</span>
+                    }
+                    @if (item.TarjetasRojas > 0)
+                    {
+                        <span class="badge badge-danger">@item.TarjetasRojas Roja(s)</span>
+                    }
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.MinutosJugados)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EstadisticaId" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@item.EstadisticaId" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-controller="Partidos" asp-action="Details" asp-route-id="@partido.PartidoId" class="btn btn-secondary">Volver al Partido</a>
+</div>

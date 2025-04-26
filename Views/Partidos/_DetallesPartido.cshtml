@@ -1,0 +1,51 @@
+﻿@model Partido
+
+<div class="modal fade" id="detallesPartidoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detalles del Partido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row text-center mb-3">
+                    <div class="col-md-5">
+                        <h3>@Model.EquipoLocal.Nombre</h3>
+                        <h1>@Model.GolesLocal</h1>
+                    </div>
+                    <div class="col-md-2">
+                        <h3>vs</h3>
+                    </div>
+                    <div class="col-md-5">
+                        <h3>@Model.EquipoVisitante.Nombre</h3>
+                        <h1>@Model.GolesVisitante</h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Estadísticas</h4>
+                        <p><strong>Posesión:</strong> @Model.PosesionLocal% - @(100 - Model.PosesionLocal)%</p>
+                        <p><strong>Tiros al arco:</strong> @Model.TirosAlArcoLocal - @Model.TirosAlArcoVisitante</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Disciplina</h4>
+                        <p><strong>Amarillas:</strong> @Model.TarjetasAmarillasLocal - @Model.TarjetasAmarillasVisitante</p>
+                        <p><strong>Rojas:</strong> @Model.TarjetasRojasLocal - @Model.TarjetasRojasVisitante</p>
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrEmpty(Model.Observaciones))
+                {
+                    <div class="mt-3">
+                        <h4>Observaciones</h4>
+                        <p>@Model.Observaciones</p>
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

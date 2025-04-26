@@ -1,0 +1,89 @@
+﻿@model SistemaGestionDeportiva.Models.EstadisticasEquipoViewModel
+@{
+    ViewData["Title"] = $"Estadísticas de {Model.Equipo.Nombre}";
+}
+
+<h2>@ViewData["Title"]</h2>
+<h4>@Model.Equipo.Liga.Nombre</h4>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <h5>Resumen del Equipo</h5>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-6">Partidos Jugados:</dt>
+            <dd class="col-sm-6">@Model.Partidos.Count</dd>
+
+            <dt class="col-sm-6">Goles a Favor:</dt>
+            <dd class="col-sm-6">@Model.GolesAFavor</dd>
+
+            <dt class="col-sm-6">Goles en Contra:</dt>
+            <dd class="col-sm-6">@Model.GolesEnContra</dd>
+
+            <dt class="col-sm-6">Diferencia de Goles:</dt>
+            <dd class="col-sm-6">@(Model.GolesAFavor - Model.GolesEnContra)</dd>
+        </dl>
+    </div>
+
+    <div class="col-md-6">
+        <h5>Jugadores Destacados</h5>
+        <hr />
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Jugador</th>
+                    <th>Goles</th>
+                    <th>Asistencias</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var jugador in Model.JugadoresDestacados)
+                {
+                    <tr>
+                        <td>@jugador.Jugador.Usuario.NombreCompleto</td>
+                        <td>@jugador.TotalGoles</td>
+                        <td>@jugador.TotalAsistencias</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<h5 class="mt-4">Últimos Partidos</h5>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Partido</th>
+            <th>Resultado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var partido in Model.Partidos.Take(5))
+        {
+            <tr>
+                <td>@partido.FechaHora.ToShortDateString()</td>
+                <td>
+                    @(partido.EquipoLocalId == Model.Equipo.EquipoId ?
+                        $"vs {partido.EquipoVisitante.Nombre}" :
+                        $"@ {partido.EquipoLocal.Nombre}")
+                </td>
+                <td>
+                    @if (partido.EquipoLocalId == Model.Equipo.EquipoId)
+                    {
+                        <span>@partido.GolesLocal - @partido.GolesVisitante</span>
+                    }
+                    else
+                    {
+                        <span>@partido.GolesVisitante - @partido.GolesLocal</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="mt-4">
+    <a asp-action="TablaPosiciones" asp-route-id="@Model.Equipo.LigaId" class="btn btn-secondary">Volver a la Tabla</a>
+</div>

@@ -1,0 +1,66 @@
+﻿@model EntrenamientosViewModel
+
+<h2>Entrenamientos - @Model.LigaSeleccionada.Nombre</h2>
+
+<div class="row mb-3">
+    <div class="col-md-4">
+        <label class="form-label">Seleccionar Liga:</label>
+        <select id="ligaSelector" class="form-select">
+            @foreach (var liga in Model.TodasLigas)
+            {
+                <option value="@liga.LigaId"
+                        selected="@(liga.LigaId == Model.LigaSeleccionada.LigaId)">
+                    @liga.Nombre
+                </option>
+            }
+        </select>
+    </div>
+    <div class="col-md-8 d-flex align-items-end">
+        <span class="badge bg-primary me-3">
+            Partidos: @Model.NumPartidos
+        </span>
+        <span class="badge bg-success">
+            Entrenamientos: @Model.NumEntrenamientos
+        </span>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fecha/Hora</th>
+            <th>Equipo</th>
+            <th>Objetivo</th>
+            <th>Ubicación</th>
+            <th>Entrenador</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entrenamiento in Model.Entrenamientos)
+        {
+            <tr>
+                <td>@entrenamiento.FechaHora.ToString("g")</td>
+                <td>@entrenamiento.Equipo?.Nombre</td>
+                <td>@entrenamiento.Objetivo</td>
+                <td>@entrenamiento.Ubicacion</td>
+                <td>@entrenamiento.Entrenador?.Usuario?.NombreCompleto</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@entrenamiento.EntrenamientoId" class="btn btn-info btn-sm">Detalles</a>
+                    <a asp-action="Edit" asp-route-id="@entrenamiento.EntrenamientoId" class="btn btn-warning btn-sm">Editar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Nuevo Entrenamiento</a>
+
+@section Scripts {
+    <script>
+        document.getElementById('ligaSelector').addEventListener('change', function() {
+            const ligaId = this.value;
+            window.location.href = `@Url.Action("Index")?ligaId=${ligaId}`;
+        });
+    </script>
+}

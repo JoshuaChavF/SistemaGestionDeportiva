@@ -1,0 +1,78 @@
+﻿@model EquipoEstadisticas 
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+                <h5>Estadísticas Básicas</h5>
+            </div>
+           
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-6">Partidos jugados:</dt>
+                        <dd class="col-sm-6">@((Model.PartidosGanados ?? 0) + (Model.PartidosPerdidos ?? 0) + (Model.PartidosEmpatados ?? 0))</dd>
+
+                        <dt class="col-sm-6">Partidos ganados:</dt>
+                        <dd class="col-sm-6">@(Model.PartidosGanados ?? 0)</dd>
+
+                        <dt class="col-sm-6">Partidos empatados:</dt>
+                        <dd class="col-sm-6">@(Model.PartidosEmpatados ?? 0)</dd>
+
+                        <dt class="col-sm-6">Partidos perdidos:</dt>
+                        <dd class="col-sm-6">@(Model.PartidosPerdidos ?? 0)</dd>
+
+                        <dt class="col-sm-6">Goles a favor:</dt>
+                        <dd class="col-sm-6">@(Model.GolesAFavor ?? 0)</dd>
+
+                        <dt class="col-sm-6">Goles en contra:</dt>
+                        <dd class="col-sm-6">@(Model.GolesEnContra ?? 0)</dd>
+
+                        <dt class="col-sm-6">Diferencia de goles:</dt>
+                        <dd class="col-sm-6">@((Model.GolesAFavor ?? 0) - (Model.GolesEnContra ?? 0))</dd>
+                    </dl>
+                </div>
+                </div>
+                </div>
+                <div class="col-md-6">
+                    <canvas id="rendimientoChart" height="250"></canvas>
+                </div>
+                </div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Gráfico de rendimiento del equipo
+        document.addEventListener('DOMContentLoaded', function() {
+            var ctx = document.getElementById('rendimientoChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Ganados', 'Empatados', 'Perdidos'],
+                    datasets: [{
+                        data: [
+        @(Model.PartidosGanados ?? 0),
+        @(Model.PartidosEmpatados ?? 0),
+        @(Model.PartidosPerdidos ?? 0)
+                        ],
+                        backgroundColor: [
+                            'rgba(40, 167, 69, 0.8)',
+                            'rgba(255, 193, 7, 0.8)',
+                            'rgba(220, 53, 69, 0.8)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Distribución de Resultados'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}

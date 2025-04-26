@@ -1,0 +1,74 @@
+﻿@model List<Tendencia>
+
+@if (Model?.Any() == true)
+{
+    <div class="row">
+        <div class="col-md-8">
+            <canvas id="tendenciasChart" height="300"></canvas>
+        </div>
+        <div class="col-md-4">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Periodo</th>
+                        <th>Goles</th>
+                        <th>Victorias</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Periodo</td>
+                            <td>@item.Goles</td>
+                            <td>@item.Victorias</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var ctx = document.getElementById('tendenciasChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [@Html.Raw(string.Join(",", Model.Select(t => $"'{t.Periodo}'")))],
+                    datasets: [
+                        {
+                            label: 'Goles',
+                            data: [@string.Join(",", Model.Select(t => t.Goles))],
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            tension: 0.1
+                        },
+                        {
+                            label: 'Victorias',
+                            data: [@string.Join(",", Model.Select(t => t.Victorias))],
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            tension: 0.1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Tendencias del Equipo'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+    }
+}
+else
+{
+    <div class="alert alert-info">No hay datos de tendencias disponibles para el período seleccionado.</div>
+}

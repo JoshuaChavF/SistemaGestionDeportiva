@@ -1,0 +1,45 @@
+﻿@model List<Liga>
+
+<div class="container mt-5">
+    <h2 class="mb-4">Selecciona una Liga</h2>
+
+    <div class="row">
+        @foreach (var liga in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@liga.Nombre</h5>
+                        <p class="card-text">
+                            @if (!string.IsNullOrEmpty(liga.Descripcion))
+                            {
+                                @liga.Descripcion
+                            }
+                            else
+                            {
+                                <span class="text-muted">Sin descripción</span>
+                            }
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="@Url.Action("Index", new { ligaId = liga.LigaId })"
+                           class="btn btn-primary w-100">
+                            Ver Calendario
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .card {
+        transition: transform 0.3s;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+</style>

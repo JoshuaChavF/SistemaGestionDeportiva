@@ -1,0 +1,71 @@
+﻿@model Partido
+
+<div class="container">
+    <h2>@Model.EquipoLocal.Nombre vs @Model.EquipoVisitante.Nombre</h2>
+    <h4>@Model.FechaHora.ToString("f")</h4>
+
+    <form asp-action="ActualizarPartido" method="post">
+        <input type="hidden" name="id" value="@Model.PartidoId" />
+
+        <div class="row">
+            <div class="col-md-5 text-center">
+                <h3>@Model.EquipoLocal.Nombre</h3>
+                <div class="form-group">
+                    <label>Goles</label>
+                    <input type="number" name="GolesLocal" value="@(Model.GolesLocal ?? 0)" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Tarjetas Amarillas</label>
+                    <input type="number" name="TarjetasAmarillasLocal" value="@Model.TarjetasAmarillasLocal" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Tarjetas Rojas</label>
+                    <input type="number" name="TarjetasRojasLocal" value="@Model.TarjetasRojasLocal" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Tiros al Arco</label>
+                    <input type="number" name="TirosAlArcoLocal" value="@Model.TirosAlArcoLocal" class="form-control" />
+                </div>
+            </div>
+
+            <div class="col-md-2 text-center">
+                <div class="form-group">
+                    <label>Posesión Local %</label>
+                    <input type="number" name="PosesionLocal" value="@Model.PosesionLocal" class="form-control" min="0" max="100" />
+                </div>
+            </div>
+
+            <div class="col-md-5 text-center">
+                <h3>@Model.EquipoVisitante.Nombre</h3>
+                <div class="form-group">
+                    <label>Goles</label>
+                    <input type="number" name="GolesVisitante" value="@(Model.GolesVisitante ?? 0)" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Tarjetas Amarillas</label>
+                    <input type="number" name="TarjetasAmarillasVisitante" value="@Model.TarjetasAmarillasVisitante" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Tarjetas Rojas</label>
+                    <input type="number" name="TarjetasRojasVisitante" value="@Model.TarjetasRojasVisitante" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Tiros al Arco</label>
+                    <input type="number" name="TirosAlArcoVisitante" value="@Model.TirosAlArcoVisitante" class="form-control" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Observaciones</label>
+            <textarea name="Observaciones" class="form-control">@Model.Observaciones</textarea>
+        </div>
+
+        <div class="form-check mb-3">
+            <input type="checkbox" name="Finalizar" class="form-check-input" id="finalizarCheck" />
+            <label class="form-check-label" for="finalizarCheck">Finalizar Partido</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+</div>

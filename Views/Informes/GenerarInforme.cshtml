@@ -1,0 +1,71 @@
+﻿@model InformeViewModel
+
+<div class="container">
+    <!-- Sección de Estadísticas de Equipo -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3>Estadísticas del Equipo</h3>
+                </div>
+                <div class="card-body">
+                    <partial name="_EstadisticasEquipo" model="Model.EstadisticasEquipo" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Jugadores -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h3>Estadísticas de Jugadores</h3>
+                </div>
+                <div class="card-body">
+                    <partial name="_EstadisticasJugadores" model="Model.EstadisticasJugadores" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gráfico de rendimiento del equipo
+            var ctx = document.getElementById('rendimientoChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Ganados', 'Empatados', 'Perdidos'],
+                    datasets: [{
+                        data: [
+        @(Model.EstadisticasEquipo?.PartidosGanados ?? 0),
+        @(Model.EstadisticasEquipo?.PartidosEmpatados ?? 0),
+        @(Model.EstadisticasEquipo?.PartidosPerdidos ?? 0)
+                        ],
+                        backgroundColor: [
+                            'rgba(40, 167, 69, 0.8)',
+                            'rgba(255, 193, 7, 0.8)',
+                            'rgba(220, 53, 69, 0.8)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Distribución de Resultados'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}

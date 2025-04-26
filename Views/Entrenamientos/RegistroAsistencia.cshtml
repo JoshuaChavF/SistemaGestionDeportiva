@@ -1,0 +1,41 @@
+﻿@model Entrenamiento
+
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h4>Asistencia - @Model.FechaHora.ToString("dd/MM/yyyy")</h4>
+    </div>
+    <div class="card-body">
+        <form asp-action="RegistrarAsistencia" asp-route-id="@Model.EntrenamientoId" method="post" id="asistencia-form">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Jugador</th>
+                        <th>Asistió</th>
+                        <th>Notas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var jugador in ViewBag.Jugadores as List<Jugador>)
+                    {
+                        var asistencia = Model.Asistencias.FirstOrDefault(a => a.JugadorId == jugador.JugadorId);
+                        <tr>
+                            <td>@jugador.Nombre</td>
+                            <td>
+                                <input type="checkbox"
+                                       name="asistencias[@jugador.JugadorId]"
+                                       value="true"
+                                @(asistencia?.Asistio == true ? "checked" : "") />
+                            </td>
+                            <td>
+                                <input type="text"
+                                       name="notas[@jugador.JugadorId]"
+                                       value="@asistencia?.Notas" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-success">Guardar Asistencias</button>
+        </form>
+    </div>
+</div>

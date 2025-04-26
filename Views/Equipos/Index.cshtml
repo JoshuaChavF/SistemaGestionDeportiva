@@ -1,0 +1,101 @@
+﻿@model IEnumerable<SistemaGestionDeportiva.Models.Equipo>
+
+@{
+    ViewData["Title"] = "Equipos Registrados";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>@ViewData["Title"]</h1>
+    @if (User.IsInRole("Administrador") || User.IsInRole("Entrenador"))
+    {
+        <a asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Nuevo Equipo
+        </a>
+    }
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Liga</th>
+                <th>Jugadores</th>
+                <th>Entrenadores</th>
+                <th>Estadísticas</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            @if (!string.IsNullOrEmpty(item.EscudoUrl))
+                            {
+                                <img src="@item.EscudoUrl" alt="Escudo" class="img-thumbnail me-2" style="width: 40px; height: 40px; object-fit: contain; background-color: @item.ColorPrincipal">
+                            }
+                            <strong>@item.Nombre</strong>
+                        </div>
+                    </td>
+                    <td>
+                        @if (item.Liga != null)
+                        {
+                            <a asp-controller="Ligas" asp-action="Details" asp-route-id="@item.LigaId">
+                                @item.Liga.Nombre
+                            </a>
+                        }
+                        else
+                        {
+                            <span class="text-muted">Sin liga</span>
+                        }
+                    </td>
+                    <td>
+                        <span class="badge bg-primary">@item.Jugadores?.Count</span>
+                    </td>
+                    <td>
+                        <span class="badge bg-info">@item.Entrenadores?.Count</span>
+                    </td>
+                    <td>
+                        <div class="small">
+                            <span class="badge bg-success" title="Partidos Ganados">@item.PartidosGanados</span>
+                            <span class="badge bg-warning text-dark" title="Partidos Empatados">@item.PartidosEmpatados</span>
+                            <span class="badge bg-danger" title="Partidos Perdidos">@item.PartidosPerdidos</span>
+                            <br>
+                            <span class="text-success" title="Goles a favor">GF: @item.GolesAFavor</span> |
+                            <span class="text-danger" title="Goles en contra">GC: @item.GolesEnContra</span> |
+                            <span class="text-primary" title="Diferencia">Dif: @item.DiferenciaGoles</span>
+                            <br>
+                            <strong>Puntos: @item.Puntos</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.EquipoId" class="btn btn-sm btn-info" title="Detalles">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                        @if (User.IsInRole("Administrador") || User.IsInRole("Entrenador"))
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.EquipoId" class="btn btn-sm btn-danger" title="Eliminar">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Styles {
+    <style>
+        .badge {
+            font-size: 0.85em;
+            margin-right: 2px;
+        }
+
+        .img-thumbnail {
+            padding: 0.15rem;
+        }
+    </style>
+}

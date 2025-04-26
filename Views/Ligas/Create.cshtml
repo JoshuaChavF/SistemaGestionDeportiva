@@ -1,0 +1,91 @@
+﻿@model SistemaGestionDeportiva.Models.Liga
+
+@{
+    ViewData["Title"] = "Crear Nueva Liga";
+}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4>@ViewData["Title"]</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Nombre" class="control-label"></label>
+                            <input asp-for="Nombre" class="form-control" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Descripcion" class="control-label"></label>
+                            <textarea asp-for="Descripcion" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Descripcion" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="LogoUrl" class="control-label"></label>
+                            <input asp-for="LogoUrl" class="form-control" />
+                            <span asp-validation-for="LogoUrl" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="FechaInicio" class="control-label"></label>
+                            <input asp-for="FechaInicio" type="date" class="form-control" />
+                            <span asp-validation-for="FechaInicio" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="FechaFin" class="control-label"></label>
+                            <input asp-for="FechaFin" type="date" class="form-control" />
+                            <span asp-validation-for="FechaFin" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Duración</label>
+                            <div class="form-control-plaintext" id="duracionLiga">
+                                @((Model.FechaFin - Model.FechaInicio).Days) días
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save"></i> Guardar Liga
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Volver al Listado
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function() {
+            $('#FechaInicio, #FechaFin').change(function() {
+                var inicio = new Date($('#FechaInicio').val());
+                var fin = new Date($('#FechaFin').val());
+
+                if (inicio && fin && fin > inicio) {
+                    var diff = Math.floor((fin - inicio) / (1000 * 60 * 60 * 24));
+                    $('#duracionLiga').text(diff + ' días');
+                } else {
+                    $('#duracionLiga').text('Fechas inválidas');
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<SistemaGestionDeportiva.Models.EstadisticaPartido>
+@{
+    var jugador = ViewData["Jugador"] as SistemaGestionDeportiva.Models.Jugador;
+    ViewData["Title"] = $"Estadísticas de {jugador.Usuario.NombreCompleto}";
+}
+
+<h2>@ViewData["Title"]</h2>
+<h4>@jugador.Posicion - @jugador.Equipo.Nombre</h4>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <h5>Resumen</h5>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-6">Partidos Jugados:</dt>
+            <dd class="col-sm-6">@Model.Count()</dd>
+
+            <dt class="col-sm-6">Total Goles:</dt>
+            <dd class="col-sm-6">@Model.Sum(e => e.Goles)</dd>
+
+            <dt class="col-sm-6">Total Asistencias:</dt>
+            <dd class="col-sm-6">@Model.Sum(e => e.Asistencias)</dd>
+
+            <dt class="col-sm-6">Tarjetas Amarillas:</dt>
+            <dd class="col-sm-6">@Model.Sum(e => e.TarjetasAmarillas)</dd>
+
+            <dt class="col-sm-6">Tarjetas Rojas:</dt>
+            <dd class="col-sm-6">@Model.Sum(e => e.TarjetasRojas)</dd>
+        </dl>
+    </div>
+</div>
+
+<h5 class="mt-4">Detalle por Partido</h5>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Partido</th>
+            <th>Fecha</th>
+            <th>Goles</th>
+            <th>Asistencias</th>
+            <th>Tarjetas</th>
+            <th>Minutos</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Partido.EquipoLocal.Nombre vs @item.Partido.EquipoVisitante.Nombre</td>
+                <td>@item.Partido.FechaHora.ToShortDateString()</td>
+                <td>@Html.DisplayFor(modelItem => item.Goles)</td>
+                <td>@Html.DisplayFor(modelItem => item.Asistencias)</td>
+                <td>
+                    @if (item.TarjetasAmarillas > 0)
+                    {
+                        <span class="badge badge-warning">@item.TarjetasAmarillas Amarilla(s)</span>
+                    }
+                    @if (item.TarjetasRojas > 0)
+                    {
+                        <span class="badge badge-danger">@item.TarjetasRojas Roja(s)</span>
+                    }
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.MinutosJugados)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a href="javascript:history.back()" class="btn btn-secondary">Volver</a>
+</div>

@@ -1,0 +1,107 @@
+﻿@model SistemaGestionDeportiva.Models.InformeJugadorViewModel
+
+@{
+    ViewData["Title"] = $"Informe del Jugador: {Model.Jugador.Usuario.NombreCompleto}";
+}
+
+<h2>@ViewData["Title"]</h2>
+<h4>@Model.Jugador.Equipo.Nombre - @Model.Jugador.Posicion</h4>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Resumen Estadístico</h5>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-light rounded">
+                            <h3>@Model.PartidosJugados</h3>
+                            <p class="text-muted mb-0">Partidos Jugados</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-light rounded">
+                            <h3>@Model.Goles</h3>
+                            <p class="text-muted mb-0">Goles</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-light rounded">
+                            <h3>@Model.Asistencias</h3>
+                            <p class="text-muted mb-0">Asistencias</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-light rounded">
+                            <h3>@Model.TarjetasAmarillas / @Model.TarjetasRojas</h3>
+                            <p class="text-muted mb-0">Tarjetas A/R</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-light rounded">
+                            <h3>@Model.PromedioGoles.ToString("0.00")</h3>
+                            <p class="text-muted mb-0">Promedio Goles</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-light rounded">
+                            <h3>@Model.PromedioAsistencias.ToString("0.00")</h3>
+                            <p class="text-muted mb-0">Promedio Asistencias</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <a asp-action="ExportarExcelJugador" asp-route-id="@Model.Jugador.JugadorId" class="btn btn-success">Exportar a Excel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Últimos Partidos</h5>
+                <hr />
+
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Rival</th>
+                            <th>G</th>
+                            <th>A</th>
+                            <th>TA</th>
+                            <th>TR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var partido in Model.UltimosPartidos)
+                        {
+                            <tr>
+                                <td>@partido.Fecha.ToShortDateString()</td>
+                                <td>@partido.Rival</td>
+                                <td>@partido.Goles</td>
+                                <td>@partido.Asistencias</td>
+                                <td>@partido.TarjetasAmarillas</td>
+                                <td>@partido.TarjetasRojas</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-controller="Jugadores" asp-action="Perfil" asp-route-id="@Model.Jugador.JugadorId" class="btn btn-secondary">Volver al Perfil</a>
+</div>

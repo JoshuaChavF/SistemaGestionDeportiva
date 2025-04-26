@@ -1,0 +1,150 @@
+﻿@model SistemaGestionDeportiva.Models.CalendarioViewModel
+
+<div class="container">
+    <h1>Calendario de Partidos</h1>
+
+    <!-- Selector de Liga con cambio automático -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="input-group">
+                <select id="ligaSelector" class="form-select">
+                    @foreach (var liga in Model.TodasLigas)
+                    {
+                        <option value="@liga.LigaId"
+                                selected="@(liga.LigaId == ViewBag.LigaSeleccionadaId)">
+                            @liga.Nombre
+                        </option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        @if (Model.Liga != null)
+        {
+            <div class="col-md-6 text-end">
+                <form asp-action="GenerarPartidosCompletos" method="post">
+                    <input type="hidden" name="ligaId" value="@Model.Liga.LigaId" />
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-warning">
+                        <i class="fas fa-magic"></i> Generar Liga Completa
+                    </button>
+                </form>
+            </div>
+        }
+    </div>
+
+    <!-- Mensajes -->
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (Model.Liga != null)
+    {
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white d-flex justify-content-between">
+                <div>
+                    <h3 class="mb-0">@Model.Liga.Nombre</h3>
+                    <small>
+                        Temporada: @Model.Liga.FechaInicio.ToString("d") - @Model.Liga.FechaFin.ToString("d") |
+                        Equipos: @Model.Liga.Equipos.Count |
+                        Partidos: @Model.Partidos.Count
+                    </small>
+                </div>
+                <a asp-action="TablaPosiciones" asp-route-ligaId="@Model.Liga.LigaId"
+                   class="btn btn-sm btn-light">
+                    Ver Tabla de Posiciones
+                </a>
+            </div>
+
+            <div class="card-body">
+                @if (Model.Partidos.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Local</th>
+                                    <th>vs</th>
+                                    <th>Visitante</th>
+                                    <th>Resultado</th>
+                                    <th>Estadísticas</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var partido in Model.Partidos.OrderBy(p => p.FechaHora))
+                                {
+                                    <tr class="@(partido.FechaHora.Date == DateTime.Today ? "table-info" : "")">
+                                        <td>@partido.FechaHora.ToString("g")</td>
+                                        <td>@partido.EquipoLocal.Nombre</td>
+                                        <td>vs</td>
+                                        <td>@partido.EquipoVisitante.Nombre</td>
+                                        <td>
+                                            @if (partido.Estado == "Finalizado")
+                                            {
+                                                <strong>@($"{partido.GolesLocal} - {partido.GolesVisitante}")</strong>
+                                            }
+                                            else
+                                            {
+                                                @:-
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (partido.Estado == "Finalizado")
+                                            {
+                                                <small>
+                                                    <i class="fas fa-square text-warning"></i> @partido.TarjetasAmarillasLocal/@partido.TarjetasAmarillasVisitante |
+                                                    <i class="fas fa-square text-danger"></i> @partido.TarjetasRojasLocal/@partido.TarjetasRojasVisitante |
+                                                    <i class="fas fa-futbol"></i> @partido.TirosAlArcoLocal/@partido.TirosAlArcoVisitante |
+                                                    <i class="fas fa-percentage"></i> @partido.PosesionLocal/@(100 - partido.PosesionLocal)%
+                                                </small>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a asp-action="Details" asp-route-id="@partido.PartidoId"
+                                               class="btn btn-sm btn-info">
+                                                <i class="fas fa-eye"></i> Detalles
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        No hay partidos programados para esta liga.
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        // Cambio automático de liga
+        document.getElementById('ligaSelector').addEventListener('change', function() {
+            window.location.href = '@Url.Action("Index")' + '?ligaId=' + this.value;
+        });
+
+        // Mostrar tooltips
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}

@@ -1,0 +1,31 @@
+﻿@model List<JugadorEstadisticas>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Jugador</th>
+                <th>Goles</th>
+                <th>Asistencias</th>
+                <th>🟨</th>
+                <th>🟥</th>
+                <th>Partidos</th>
+                <th>Prom. Goles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var jugador in Model)
+            {
+                <tr>
+                    <td>@jugador.Nombre</td>
+                    <td>@jugador.Goles</td>
+                    <td>@jugador.Asistencias</td>
+                    <td>@jugador.TarjetasAmarillas</td>
+                    <td>@jugador.TarjetasRojas</td>
+                    <td>@jugador.PartidosJugados</td>
+                    <td>@(jugador.PromedioGoles?.ToString("0.00") ?? "0.00")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

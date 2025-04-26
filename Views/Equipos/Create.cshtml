@@ -1,0 +1,228 @@
+﻿@model SistemaGestionDeportiva.Models.CrearEquipoViewModel
+
+@{
+    ViewData["Title"] = "Crear Nuevo Equipo";
+}
+
+<div class="container mt-4">
+    <div class="card border-primary">
+        <div class="card-header bg-primary text-white">
+            <h4><i class="bi bi-plus-circle"></i> @ViewData["Title"]</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" id="equipoForm" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <!-- Sección de Datos del Equipo -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Nombre" class="form-label fw-bold"></label>
+                            <input asp-for="Nombre" class="form-control" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label asp-for="LigaId" class="form-label fw-bold"></label>
+                            <select asp-for="LigaId" asp-items="ViewBag.LigaId" class="form-select">
+                                <option value="">-- Seleccione Liga --</option>
+                            </select>
+                            <span asp-validation-for="LigaId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label fw-bold">Escudo del Equipo</label>
+                            <input asp-for="EscudoFile" class="form-control" accept="image/*" />
+                            <small class="text-muted">O ingrese una URL:</small>
+                            <input asp-for="EscudoUrl" class="form-control mt-1" placeholder="https://..." />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-secondary text-white">
+                        <h5>Jugadores</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="jugadores-container">
+                            @if (Model.Jugadores != null)
+                            {
+                                for (int i = 0; i < Model.Jugadores.Count; i++)
+                                {
+                                    <div class="jugador-item mb-3 border p-3">
+                                        <!-- Contenido del jugador -->
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <p class="text-muted">No hay jugadores agregados</p>
+                            }
+                        </div>
+                        <button type="button" id="btn-add-jugador" class="btn btn-success mt-2">
+                            <i class="bi bi-plus"></i> Agregar Jugador
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sección de Entrenadores -->
+                <div class="card mb-4">
+                    <div class="card-header bg-secondary text-white">
+                        <h5>Entrenadores</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="entrenadores-container">
+                            @if (Model.Entrenadores != null)
+                            {
+                                for (int i = 0; i < Model.Entrenadores.Count; i++)
+                                {
+                                    <div class="entrenador-item mb-3 border p-3">
+                                        <!-- Contenido del entrenador -->
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <p class="text-muted">No hay entrenadores agregados</p>
+                            }
+                        </div>
+                        <button type="button" id="btn-add-entrenador" class="btn btn-success mt-2">
+                            <i class="bi bi-plus"></i> Agregar Entrenador
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Colores y Botones -->
+                <div class="row mb-4">
+    <div class="col-md-3">
+        <label asp-for="ColorPrincipal" class="form-label fw-bold"></label>
+        <input type="color" asp-for="ColorPrincipal" class="form-control form-control-color" value="#000000" required />
+        <span asp-validation-for="ColorPrincipal" class="text-danger"></span>
+    </div>
+    <div class="col-md-3">
+        <label asp-for="ColorSecundario" class="form-label fw-bold"></label>
+        <input type="color" asp-for="ColorSecundario" class="form-control form-control-color" value="#FFFFFF" required />
+        <span asp-validation-for="ColorSecundario" class="text-danger"></span>
+    </div>
+</div>
+
+                <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-primary me-2">
+                        <i class="bi bi-save"></i> Guardar Equipo
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i> Volver
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+                       $(document).ready(function() {
+            // Configurar eventos de los botones
+            $('#btn-add-jugador').click(function() { agregarJugador(); });
+            $('#btn-add-entrenador').click(function() { agregarEntrenador(); });
+
+
+            // Función para agregar jugador
+            function agregarJugador() {
+                var index = $('#jugadores-container .jugador-item').length;
+                var html = `
+                <div class="jugador-item mb-3 border p-3">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Nombre</label>
+                            <input name="Jugadores[${index}].Nombre" class="form-control" required />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Posición</label>
+                            <input name="Jugadores[${index}].Posicion" class="form-control" required />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Número</label>
+                            <input name="Jugadores[${index}].NumeroCamiseta" type="number" class="form-control" required />
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button type="button" class="btn btn-danger btn-remove-jugador">
+                                <i class="bi bi-trash"></i> Eliminar
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+                $('#jugadores-container').append(html);
+            }
+                 
+            // Función para agregar entrenador
+                           function agregarEntrenador() {
+            var index = $('#entrenadores-container .entrenador-item').length;
+            var html = `
+            <div class="entrenador-item mb-3 border p-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Nombre</label>
+                        <input name="Entrenadores[${index}].Nombre" class="form-control" required />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Especialidad</label>
+                        <input name="Entrenadores[${index}].Especialidad" class="form-control" required />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Usuario (opcional)</label>
+                        <select name="Entrenadores[${index}].UsuarioId" class="form-select">
+                            <option value="">-- Sin usuario --</option>
+        @foreach (var user in ViewBag.UsuariosDisponibles)
+        {
+                                    <option value="@user.Id">@user.UserName</option>
+        }
+                        </select>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="button" class="btn btn-danger btn-remove-entrenador">
+                            <i class="bi bi-trash"></i> Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+            $('#entrenadores-container').append(html);
+        }
+
+            // Inicializar con un jugador y entrenador si están vacíos
+            if ($('#jugadores-container .jugador-item').length === 0) {
+                agregarJugador();
+            }
+            if ($('#entrenadores-container .entrenador-item').length === 0) {
+                agregarEntrenador();
+            }
+
+            // Eliminar jugador
+            $(document).on('click', '.btn-remove-jugador', function() {
+                $(this).closest('.jugador-item').remove();
+                reindexar('jugadores-container', 'Jugadores');
+            });
+
+            // Eliminar entrenador
+            $(document).on('click', '.btn-remove-entrenador', function() {
+                $(this).closest('.entrenador-item').remove();
+                reindexar('entrenadores-container', 'Entrenadores');
+            });
+
+            // Función para reindexar
+            function reindexar(containerId, prefix) {
+                $(`#${containerId} .${prefix.toLowerCase()}-item`).each(function(index) {
+                    $(this).find('input').each(function() {
+                        var name = $(this).attr('name').replace(new RegExp(`${prefix}\\[\\d+\\]`), `${prefix}[${index}]`);
+                        $(this).attr('name', name);
+                    });
+                });
+            }
+        });
+    </script>
+}

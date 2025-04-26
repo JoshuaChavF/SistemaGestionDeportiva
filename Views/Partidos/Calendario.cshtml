@@ -1,0 +1,159 @@
+﻿@model CalendarioViewModel
+
+<div class="container">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3>
+                    <i class="fas fa-calendar-alt me-2"></i>
+                    Calendario de Partidos
+                </h3>
+
+                <!-- Dropdown para seleccionar liga -->
+                <form method="get" class="mb-0">
+                    <div class="input-group">
+                        <select name="ligaId" asp-for="Liga.LigaId" asp-items="Model.ListaLigas"
+                                class="form-select" onchange="this.form.submit()">
+                            <option value="">-- Seleccione Liga --</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        @if (Model.Liga != null)
+        {
+            <div class="card-body">
+                <!-- Estadísticas rápidas -->
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="card text-white bg-success mb-3">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">@Model.PartidosJugados</h5>
+                                <p class="card-text">Partidos Jugados</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-white bg-warning mb-3">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">@Model.PartidosPendientes</h5>
+                                <p class="card-text">Partidos Pendientes</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-white bg-danger mb-3">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">@Model.PartidosEnCurso</h5>
+                                <p class="card-text">En Curso</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selector de fechas -->
+                <div class="dropdown mb-4">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button"
+                            id="dropdownMenuButton" data-bs-toggle="dropdown">
+                        @Model.FechaFiltro?.ToString("dd/MM/yyyy")
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="@Url.Action("Calendario", new { ligaId = Model.Liga.LigaId })">Hoy</a></li>
+                        @foreach (var fecha in Model.Liga.Partidos
+                       .Select(p => p.FechaHora.Date)
+                       .Distinct()
+                       .OrderBy(d => d))
+                        {
+                            <li>
+                                <a class="dropdown-item"
+                                   href="@Url.Action("Calendario", new {
+                                       ligaId = Model.Liga.LigaId,
+                                       fecha = fecha.ToString("yyyy-MM-dd")
+                                   })">
+                                    @fecha.ToString("dd/MM/yyyy")
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+                <!-- Tabla de partidos -->
+                @if (Model.Partidos.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="table-dark">
+                                    <th>Fecha/Hora</th>
+                                    <th>Partido</th>
+                                    <th>Ubicación</th>
+                                    <th>Estado</th>
+                                    <th>Resultado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var partido in Model.Partidos)
+                                {
+                                    <tr>
+                                        <td>@partido.FechaHora.ToString("g")</td>
+                                        <td>
+                                            <img src="@partido.EquipoLocal.EscudoUrl" width="30" class="me-2">
+                                            <strong>@partido.EquipoLocal.Nombre</strong> vs
+                                            <strong>@partido.EquipoVisitante.Nombre</strong>
+                                            <img src="@partido.EquipoVisitante.EscudoUrl" width="30" class="ms-2">
+                                        </td>
+                                        <td>@partido.Ubicacion</td>
+                                        <td>
+                                            <span class="badge @GetEstadoBadgeClass(partido.Estado)">
+                                                @partido.Estado
+                                            </span>
+                                        </td>
+                                        <td>
+                                            @if (partido.Estado == "Finalizado")
+                                            {
+                                                <span class="fw-bold">
+                                                    @partido.GolesLocal - @partido.GolesVisitante
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted">-</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        No hay partidos programados para esta fecha.
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="card-body text-center py-5">
+                <i class="fas fa-calendar-times fa-4x text-muted mb-3"></i>
+                <h4>Seleccione una liga para ver el calendario</h4>
+            </div>
+        }
+    </div>
+</div>
+
+@functions {
+    string GetEstadoBadgeClass(string estado)
+    {
+        return estado switch
+        {
+            "Finalizado" => "bg-success",
+            "EnCurso" => "bg-warning text-dark",
+            "Cancelado" => "bg-danger",
+            _ => "bg-primary"
+        };
+    }
+}
